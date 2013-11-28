@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+			<value>${jdbc.mainDb.driverClassName}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${jdbc.mainDb.url}</value>
+		</property>
+		<property name="properties">
+			<props>               	
+				<prop key="user">${jdbc.mainDb.username}</prop>
+				<prop key="password">${jdbc.mainDb.password}</prop>
+				<prop key="useUnicode">true</prop>
+				<prop key="emulateLocators">true</prop>
+				<prop key="characterEncoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" destroy-method="destroy" scope="singleton">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/com/openDams/bean</value>
+			</list>
+		</property>
+		<!--property name="mappingJarLocations"> <list> <value>/WEB-INF/lib/openDams.jar</value> </list> </property -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<!--prop key="hibernate.use_sql_comments">true</prop -->
+				<!--prop key="hibernate.hbm2ddl.auto">update</prop -->
+			</props>
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry>
+					<key>
+						<value>post-insert</value>
+					</key>
+					<bean class="com.openDams.db.event.DBEventInsertListener">
+						<property name="dataSource">
+							<ref bean="myDataSource" />
+						</property>
+						<property name="indexConfiguration">
+							<ref bean="indexConfiguration" />
+						</property>
+						<property name="relationsManager">
+							<ref bean="relationsManager" />
+						</property> 
+						<property name="titleManager">
+							<ref bean="titleManager" />
+						</property>
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<value>post-update</value>
+					</key>
+					<bean class="com.openDams.db.event.DBEventUpdateListener">
+						<property name="dataSource">
+							<ref bean="myDataSource" />
+						</property>
+						<property name="indexConfiguration">
+							<ref bean="indexConfiguration" />
+						</property> 
+						<property name="titleManager">
+							<ref bean="titleManager" />
+						</property>
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<value>post-delete</value>
+					</key>
+					<bean class="com.openDams.db.event.DBEventDeleteListener">
+						<property name="dataSource">
+							<ref bean="myDataSource" />
+						</property>
+						<property name="indexConfiguration">
+							<ref bean="indexConfiguration" />
+						</property>
+						<property name="relationsManager">
+							<ref bean="relationsManager" />
+						</property> 
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="openDamsService" class="com.openDams.services.OpenDamsService">
+		<property name="dbManager" ref="dbManager" />
+	</bean>
+ 
+	<!--SCHEDULED TASK PER OTTIMIZZARE GLI INDICI -->
+	<bean id="jobDetailIndexManager" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="indexOptimizer" />
+		<property name="targetMethod" value="optimizeIndexes" />  
+	</bean>
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailIndexManager" />
+		<!-- run every morning at 3 AM -->
+		<property name="cronExpression" value="0 0 3 * * ?" />
+	</bean>
+	<bean id="indexOptimizer" class="com.openDams.index.optimizer.IndexOptimizer">
+		<property name="service" ref="openDamsService" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+	<bean id="openDamsServiceProvider" class="com.openDams.dao.OpenDamsServiceProvider">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean id="openDamsTitleManagerProvider" class="com.openDams.title.configuration.OpenDamsTitleManagerProvider">
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean id="openDamsSearcherProvider" class="com.openDams.index.searchers.OpenDamsSearcherProvider">
+		<property name="searcher" ref="searcher" />
+	</bean>
+	<!-- SCHEDULER per i vari trigger -->
+	<bean id="quartzSchedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" destroy-method="destroy">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+		<property name="quartzProperties">
+			<props>
+			<prop key="org.quartz.threadPool.threadCount">1</prop>
+			<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+			</props>
+		</property>
+		<property name="waitForJobsToCompleteOnShutdown" value="true" />
+	</bean>
+
+	<!--FINE SCHEDULED TASK PER OTTIMIZZARE GLI INDICI -->
+	<bean id="indexConfiguration" class="com.openDams.index.configuration.IndexConfiguration" lazy-init="true">
+		<property name="jDBCDialect" value="org.apache.lucene.store.jdbc.dialect.MySQLDialect" />
+		<property name="configurationIndexReader">
+			<ref bean="configurationIndexReader" />
+		</property>
+		<property name="indexManager">
+			<ref bean="indexManager" />
+		</property>
+		<property name="indexManagerPool">
+			<ref bean="indexManagerPool" />
+		</property>
+		<property name="index_name" value="${lucene.index.index_name}" />
+		<property name="generic_index_name" value="${lucene.index.generic_index_name}" />
+		<property name="use_external_conf_location" value="${lucene.index.use_external_conf_location}" />
+		<property name="configuration_location" value="${lucene.index.configuration_location}" />
+		<property name="use_db_for_generic_configuration" value="${lucene.index.use_db_for_generic_configuration}" />
+		<property name="generic_configuration_location" value="${lucene.index.generic_configuration_location}" />
+		<property name="fsDirectory" value="${lucene.index.fsDirectory}" />
+		<property name="use_external_index_location" value="${lucene.index.use_external_index_location}" />
+		<property name="index_location" value="${lucene.index.index_location}" />
+	</bean>
+	<bean id="relationsConfiguration" class="com.openDams.relations.configuration.RelationsConfiguration" lazy-init="true">
+		<property name="file_name" value="${relations.file_name}" />
+		<property name="use_external_conf_location" value="${relations.use_external_conf_location}" />
+		<property name="configuration_location" value="${relations.configuration_location}" />
+	</bean>
+	<bean id="searchConfiguration" class="com.openDams.search.configuration.SearchConfiguration" lazy-init="true">
+		<property name="file_name" value="${search.file_name}" />
+		<property name="use_external_conf_location" value="${search.use_external_conf_location}" />
+		<property name="configuration_location" value="${search.configuration_location}" />
+	</bean>
+	<bean id="indexManager" class="com.openDams.index.factory.FSIndexManager">
+		<property name="analyzerClass" value="com.openDams.index.analyzers.IT_Analyzer" />
+		<property name="maxNumSegments" value="1" />
+		<property name="maxMergeDocs" value="1000" />
+		<property name="optimize" value="false" />
+		<property name="doWaitOperationsComplete" value="false" />
+		<property name="RAMBufferSizeMB" value="16" />
+		<property name="useCompoundFile" value="true" />
+	</bean>
+	<bean id="indexManagerPool" class="com.openDams.index.factory.IndexManagerPool">
+		<property name="analyzerClass" value="com.openDams.index.analyzers.IT_Analyzer" />
+		<property name="maxNumSegments" value="1" />
+		<property name="maxMergeDocs" value="1000" />
+		<property name="optimize" value="false" />
+		<property name="doWaitOperationsComplete" value="false" />
+		<property name="RAMBufferSizeMB" value="16" />
+		<property name="useCompoundFile" value="true" />
+		<property name="indexManagerClass" value="com.openDams.index.factory.FSIndexManager" />
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="mySessionFactory" />
+		</property>
+	</bean>
+	<bean id="dbManager" class="com.openDams.dao.DBManager">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+		<property name="hierarchyQuerys">
+			<map>
+				<entry key="1" value-ref="query_archive_1" />
+				<entry key="16" value-ref="query_archive_16" />
+				<entry key="101" value-ref="query_archive_101" />
+				<entry key="121" value-ref="query_archive_121" />
+			</map>
+		</property>
+	</bean>
+	<bean id="query_archive_1" class="com.openDams.dao.HierarchyCountQuery">
+		<property name="query" value="SELECT count(ref_id_record_1) from relations where (ref_id_record_1=? and (ref_id_relation_type=2 or ref_id_relation_type=10)) or (ref_id_record_2=? and (ref_id_relation_type=1 or ref_id_relation_type=11));" />
+		<property name="params">
+			<map>
+				<entry key="1" value="idRecord" />
+				<entry key="2" value="idRecord" />
+			</map>
+		</property>
+	</bean>
+	<bean id="query_archive_16" class="com.openDams.dao.HierarchyCountQuery">
+		<property name="query" value="SELECT count(ref_id_record_1) from relations where (ref_id_record_1=? and (ref_id_relation_type=2 or ref_id_relation_type=10)) or (ref_id_record_2=? and (ref_id_relation_type=1 or ref_id_relation_type=11));" />
+		<property name="params">
+			<map>
+				<entry key="1" value="idRecord" />
+				<entry key="2" value="idRecord" />
+			</map>
+		</property>
+	</bean>
+	<bean id="query_archive_101" class="com.openDams.dao.HierarchyCountQuery">
+		<property name="query" value="SELECT count(ref_id_record_1) from relations where (ref_id_record_1=? and (ref_id_relation_type=2 or ref_id_relation_type=10)) or (ref_id_record_2=? and (ref_id_relation_type=1 or ref_id_relation_type=11));" />
+		<property name="params">
+			<map>
+				<entry key="1" value="idRecord" />
+				<entry key="2" value="idRecord" />
+			</map>
+		</property>
+	</bean>
+	<bean id="query_archive_121" class="com.openDams.dao.HierarchyCountQuery">
+		<property name="query" value="SELECT count(ref_id_record_1) from relations where (ref_id_record_1=? and (ref_id_relation_type=2 or ref_id_relation_type=10)) or (ref_id_record_2=? and (ref_id_relation_type=1 or ref_id_relation_type=11));" />
+		<property name="params">
+			<map>
+				<entry key="1" value="idRecord" />
+				<entry key="2" value="idRecord" />
+			</map>
+		</property>
+	</bean>
+	<bean id="configurationIndexReader" class="com.openDams.index.configuration.ConfigurationReader">
+		<property name="indexConfiguration">
+			<ref bean="indexConfiguration" />
+		</property>
+	</bean>
+	<bean id="configurationTitleReader" class="com.openDams.title.configuration.ConfigurationReader">
+		<property name="indexConfiguration">
+			<ref bean="indexConfiguration" />
+		</property>
+	</bean>
+	<bean id="configurationRelationsReader" class="com.openDams.relations.configuration.ConfigurationReader">
+		<property name="relationsConfiguration">
+			<ref bean="relationsConfiguration" />
+		</property>
+	</bean>
+	<bean id="relationsManager" class="com.openDams.relations.managing.RelationsManager">
+		<property name="configurationRelationsReader">
+			<ref bean="configurationRelationsReader" />
+		</property>
+		<property name="dataSource">
+			<ref bean="myDataSource" />
+		</property>
+		<property name="indexConfiguration">
+			<ref bean="indexConfiguration" />
+		</property>
+	</bean>
+	<bean id="configurationSearchReader" class="com.openDams.search.configuration.ConfigurationReader">
+		<property name="searchConfiguration">
+			<ref bean="searchConfiguration" />
+		</property>
+	</bean>
+	<bean id="titleManager" class="com.openDams.title.configuration.TitleManager">
+		<property name="configurationTitleReader">
+			<ref bean="configurationTitleReader" />
+		</property>
+	</bean>
+	<bean id="searcher" class="com.openDams.index.searchers.Searcher">
+		<property name="dataSource">
+			<ref bean="myDataSource" />
+		</property>
+		<property name="indexConfiguration">
+			<ref bean="indexConfiguration" />
+		</property>
+		<property name="titleManager">
+			<ref bean="titleManager" />
+		</property>
+	</bean>
+	<bean id="searchFieldManager" class="com.openDams.index.searchers.SearchFieldManager">
+		<property name="indexConfiguration">
+			<ref bean="indexConfiguration" />
+		</property>
+	</bean>
+	<bean id="queryBuilder" class="com.openDams.index.searchers.QueryBuilder">
+		<property name="searchFieldManager">
+			<ref bean="searchFieldManager" />
+		</property>
+		<property name="highlightFields" value="contents,title,description" />
+	</bean>
+</beans>

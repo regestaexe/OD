@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       ">	
+	<!--SEARCH BUILDER -->
+	<bean name="/searchBuilder.html" class="com.openDams.search_builder.controller.WorkspaceController">
+		<property name="service" ref="openDamsService" />
+		<property name="configurationSearchReader" ref="configurationSearchReader" />
+		<property name="excludeList" value="7,14,17,5000" />
+	</bean>
+	<bean name="/searchBuilderTree.html" class="com.openDams.search_builder.controller.SKOSController">
+		<property name="service" ref="openDamsService" />
+		<property name="page_size" value="22" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/searchBuilderResult.html" class="com.openDams.search_builder.controller.SearchBuilderController"></bean>
+	<bean name="/searchBuilder_adv_search.html" class="com.openDams.search_builder.controller.AdvSearchController">
+		<property name="searcher" ref="searcher" />
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="page_size" value="15" />
+		<property name="queryBuilder" ref="queryBuilder" />
+		<property name="idArchive" value="7" />
+		<property name="excludeList" value="7,14,17,5000" />
+		<property name="fileArchiveList" value="17" />
+		<property name="gridIndexFieldsName">
+			<map>
+				<entry key="1" value="griglia" />
+				<entry key="16" value="eurovoc" />
+				<entry key="101" value="griglia" />
+			</map>
+		</property>
+	</bean>
+	<bean name="/searchBuilder_rtf_producer.html" class="com.openDams.search_builder.controller.RTFProducerController">
+	</bean>
+	<bean name="/searchBuilderVoc.html" class="com.openDams.search_builder.controller.VocController">
+		<property name="searcher" ref="searcher" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+	</bean>
+	<!--END SEARCH BUILDER -->
+	
+</beans>

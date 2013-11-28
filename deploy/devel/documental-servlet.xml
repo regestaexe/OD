@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       ">
+	<!-- Caricamento delle properties per Tidy -->
+	<util:properties id="tidyProperties" location="classpath:../Tidy.properties" />
+
+	<!-- DOCUMENTAL -->
+	<bean name="/documentalPreview.html" class="com.openDams.schedoni.controller.PreviewController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<!-- PER DIEGO ULTIMI X ELEMENTI DE VOCABOLARIO -->
+	<bean name="/lastVocOccurences.html" class="com.openDams.schedoni.controller.LastVocOccurences">
+		<property name="searcher" ref="searcher" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="limit" value="24" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+	</bean>
+    
+    <bean name="/simpleEntryFields.html" class="com.openDams.schedoni.controller.SimpleEntryFieldsController">
+    	<property name="configuration_location" value="/WEB-INF/configuration" />
+		<property name="file_name" value="fields_configuration.xml" />
+		<property name="idArchive" value="" />
+		<property name="real_path" value="/regesta/opt/nsid/app/ods-lod.war" />
+	</bean>
+    
+
+	<bean name="/pdf/printPdf.html" class="com.openDams.schedoni.controller.PrintController">
+
+		<property name="localImagePath" value="file://${deployLocation}/${applicationName}/img/" />
+		<property name="regexLocalImagePath" value="localImagePath/../img/" />
+		<property name="service" ref="openDamsService" />
+		<property name="searcher" ref="searcher" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/documentalUsers.html" class="com.openDams.schedoni.controller.UsersController">
+		<property name="service" ref="openDamsService" />
+		<property name="departments" value="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16" />
+	</bean>
+	<bean name="/ajax/loadLastOccurences.html" class="com.openDams.schedoni.controller.LastOccurrencesController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="dbName" value="opendams_default" />
+	</bean>
+	<bean name="/recordTouchController.html" class="com.openDams.schedoni.controller.RecordTouchController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="searcher" ref="searcher" />
+		<property name="resolverUrlNir" value="" />
+		<property name="resolverUrlAC" value="" />
+	</bean>
+	<bean name="/documentalWorkspace.html" class="com.openDams.schedoni.controller.WorkspaceController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/ajax/documents.html" class="com.openDams.schedoni.controller.DocumentsController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/ajax/documental_adv_search.html" class="com.openDams.schedoni.controller.AdvSearchController">
+		<property name="service" ref="openDamsService" />
+		<property name="searcher" ref="searcher" />
+		<property name="indexManager" ref="indexManager" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="page_size" value="40" />
+	</bean>
+	<bean name="/ajax/documental_search_utils.html" class="com.openDams.schedoni.controller.SearchUtilsController">
+		<property name="searcher" ref="searcher" />
+		<property name="indexManager" ref="indexManager" />
+		<!--property name="titleManager" ref="titleManager" / -->
+		<property name="page_size" value="40" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+	</bean>
+	<bean name="/ajax/documentalRecord.html" class="com.openDams.schedoni.controller.RecordController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="page_size" value="40" />
+		<property name="thArchiveRelations">
+			<map>
+				<entry key="1" value="12" />
+
+
+			</map>
+		</property>
+	</bean>
+	<bean name="/ajax/saveDocumental.html" class="com.openDams.schedoni.controller.RecordManagerController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/ajax/getRiferimentiNormativi.html" class="com.openDams.schedoni.controller.RiferimentiController">
+		<property name="resolverUrlNir" value="" />
+		<property name="resolverUrlAC" value="" />
+		<property name="tidyProps" ref="tidyProperties" />
+	</bean>
+	<bean name="/ajax/skosDocumental.html" class="com.openDams.schedoni.controller.SKOSController">
+		<property name="service" ref="openDamsService" />
+		<property name="page_size" value="40" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/ajax/insertDocumental.html" class="com.openDams.schedoni.controller.InsertController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/ajax/strumentiUtente.html" class="com.openDams.schedoni.controller.StrumentiController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/recordBridgeController.html" class="com.openDams.schedoni.controller.RecordBridgeController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="searcher" ref="searcher" />
+		<property name="resolverUrlNir" value="" />
+		<property name="resolverUrlAC" value="" />
+	</bean>
+	<bean name="/ajax/documental_fathers_finder.html" class="com.openDams.schedoni.controller.FathersFinderController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+
+
+	<bean name="/ajax/documental_relation_manager.html" class="com.openDams.schedoni.controller.RelationManagerController">
+		<property name="service" ref="openDamsService" />
+		<property name="relazioni">
+			<map>
+
+			</map>
+		</property>
+	</bean>
+	<!--end DOCUMENTAL -->
+</beans>

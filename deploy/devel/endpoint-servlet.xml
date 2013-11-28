@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       ">
+	<bean id="endPointDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+			<value>${jdbc.endPointDb.driverClassName}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${jdbc.endPointDb.url}</value>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="user">${jdbc.endPointDb.username}</prop>
+				<prop key="password">${jdbc.endPointDb.password}</prop>
+				<prop key="useUnicode">true</prop>
+				<prop key="emulateLocators">true</prop>
+				<prop key="characterEncoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="openDamsdataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+			<value>${jdbc.mainDb.driverClassName}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${jdbc.mainDb.url}</value>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="user">${jdbc.mainDb.username}</prop>
+				<prop key="password">${jdbc.mainDb.password}</prop>
+				<prop key="useUnicode">true</prop>
+				<prop key="emulateLocators">true</prop>
+				<prop key="characterEncoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean name="/endPointManager.html" class="com.openDams.endpoint.controller.EndPointController"></bean>
+
+	<bean id="endPointManagerFactory" class="com.openDams.endpoint.managing.EndPointManagerFactory" scope="prototype">
+		<property name="endPointMap">
+			<util:map map-class="java.util.TreeMap">
+				<entry key="Intranet" value-ref="endPointManagerTest" />
+			</util:map>
+		</property>
+	</bean>
+	<bean id="openDamsendPointManagerFactoryProvider" class="com.openDams.endpoint.managing.OpenDamsEndPointManagerFactoryProvider">
+		<property name="endPointManagerFactory" ref="endPointManagerFactory" />
+	</bean>
+	<bean id="endPointManagerTest" class="com.openDams.endpoint.managing.VirtuosoEndPointManager" scope="prototype">
+		<property name="openDamsdataSource" ref="openDamsdataSource" />
+		<property name="VIRTUOSO_INSTANCE" value="" />
+		<property name="VIRTUOSO_PORT" value="1111" />
+		<property name="VIRTUOSO_USERNAME" value="dba" />
+		<property name="VIRTUOSO_PASSWORD" value="dba" />
+		<property name="defaultDomain" value="http://..." />
+		<property name="sparqlEndpointUri" value="http://../sparql" />
+		<property name="dataSource" ref="myDataSource" />
+		<property name="publishingPageSet" value="100" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+		<!-- INTRANET -->
+		<property name="archiveReplacer">
+			<map>
+				<entry key="all">
+					<list>
+						<value>find:pippo;replace:paperino</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+		<property name="autoArchivePublishing">
+			<map>
+				<entry key="1" value="true" />
+			</map>
+		</property>
+		<property name="allowedArchivePublishing">
+			<map>
+				<entry key="1" value="true" />
+				<entry key="2" value="true" />
+			</map>
+		</property>
+
+
+		<property name="endPointClassUtils">
+			<map>
+				<entry key="2">
+					<map>
+						<entry key="ACTION_ADD">
+							<bean class="com.openDams.endpoint.utility.ReflectClass">
+								<property name="invockingClass" value="com.openDams.endpoint.utility.HTTPPublisher" />
+								<property name="invockingMethod" value="afterAdd" />
+								<property name="multiInvocking" value="false" />
+								<property name="args">
+									<map>
+										<entry key="url" value="http://www.google.com" />
+										<entry key="user" value="pippo" />
+										<entry key="password" value="pluto" />
+									</map>
+								</property>
+							</bean>
+						</entry>
+						<entry key="ACTION_UPDATE">
+							<bean class="com.openDams.endpoint.utility.ReflectClass">
+								<property name="invockingClass" value="com.openDams.endpoint.utility.HTTPPublisher" />
+								<property name="invockingMethod" value="afterUpdate" />
+								<property name="multiInvocking" value="false" />
+								<property name="args">
+									<map>
+										<entry key="url" value="http://www.google.com" />
+										<entry key="user" value="pippo" />
+										<entry key="password" value="pluto" />
+									</map>
+								</property>
+							</bean>
+						</entry>
+						<entry key="ACTION_DELETE">
+							<bean class="com.openDams.endpoint.utility.ReflectClass">
+								<property name="invockingClass" value="com.openDams.endpoint.utility.HTTPPublisher" />
+								<property name="invockingMethod" value="afterDelete" />
+								<property name="multiInvocking" value="false" />
+								<property name="args">
+									<map>
+										<entry key="url" value="http://www.google.com" />
+										<entry key="user" value="pippo" />
+										<entry key="password" value="pluto" />
+									</map>
+								</property>
+							</bean>
+						</entry>
+					</map>
+				</entry>
+			</map>
+		</property>
+		<property name="endPointArchiveDomains">
+			<map>
+				<entry key="1">
+					<list>
+						<value>http://.../subgraph1</value>
+					</list>
+				</entry>
+				<entry key="2">
+					<list>
+						<value>http://.../subgraph2</value>
+					</list>
+				</entry>
+
+			</map>
+		</property>
+		<property name="excludeXpathListArchiveMap">
+			<map>
+				<entry key="all">
+					<list>
+						<value>/rdf:RDF/*/skos:changeNote</value>
+						<value>/rdf:RDF/*/ods:publishedOn</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

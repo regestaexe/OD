@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       ">
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000000" />
+	</bean>
+	<bean name="/upload.html" class="com.openDams.upload.controller.UploadController">
+		<property name="fileManager" ref="fileManager" />
+	</bean>
+	<bean name="/download.html" class="com.openDams.upload.controller.DownloadController">
+		<property name="fileManager" ref="fileManager" />
+	</bean>
+	<bean name="/metaData.html" class="com.openDams.upload.controller.RetriveFileMetadataController">
+		<property name="fileManager" ref="fileManager" />
+	</bean>
+	<bean id="fileManager" class="com.openDams.upload.factory.LocalFileManager">
+		<property name="upload_dir" value="${upload.localPath}" />
+		<property name="service" ref="openDamsService" />
+		<property name="idArchive" value="${upload.idArchive}" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="searcher" ref="searcher" />
+		<property name="queryBuilder" ref="queryBuilder" />
+	</bean>
+</beans>

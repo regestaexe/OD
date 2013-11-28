@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       ">
+	<!-- Twitter -->
+	<bean name="/twitter.html" class="com.openDams.twitter.controller.TwitterController">
+		<property name="twitterManager" ref="twitterManager" />
+	</bean>
+	<bean id="twitterManager" class="com.openDams.twitter.managing.TwitterManager">
+		<property name="idArchive" value="5002" />
+		<property name="searcher" ref="searcher" />
+		<property name="service" ref="openDamsService" />
+		<property name="indexManager" ref="indexManager" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="twitterUsersConfigurations">
+			<map>
+				<entry key="dc">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218860557" />
+						<property name="accessToken" value="1218860557-LucvOyFbJLUVmhN0WwILmSol6AwKhOFdLYLPrv3" />
+						<property name="accessSecret" value="hVuRnp9nTAjVisSFnccmDGpSAhhVZGsgnTsubHmxZ8" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>
+				<entry key="dam">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218876926" />
+						<property name="accessToken" value="1218876926-l0WO3tHvD0ie2V1A7JeFzp0FRcc8GrSogf5mfdk" />
+						<property name="accessSecret" value="JGPKJH2BG50QTFt5maqG65XKYwhhovLALndpvr1vs" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>
+				<entry key="dg">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218893083" />
+						<property name="accessToken" value="1218893083-zUXFwoSnWwLrF6HrxcYdIvrMZC419iNeWpQiA" />
+						<property name="accessSecret" value="rFCWfm6FWePYsOhUpGwjw51i6ip8YIPCV2G6ngbPiRI" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>
+				<entry key="das">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218805752" />
+						<property name="accessToken" value="1218805752-HW0Tf9vMTbPNcXFwwyCkHnYib2PgyZXn7NPvCLZ" />
+						<property name="accessSecret" value="O2TwyDwwhqoBc4fUUTM7U0jhyOeZZ1iSVVuUAnFQ0" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry> 
+				<entry key="dac">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219014318" />
+						<property name="accessToken" value="1219014318-tIw2WvdDPuA70Cmiz47m5YCpiKqS6GjC33EI5a8" />
+						<property name="accessSecret" value="PknE5eDh6Gcshtt77UxysFa0mO3iaSrM6MtKDFhVfHU" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>
+				<entry key="dae">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218935432" />
+						<property name="accessToken" value="1218935432-OCfe2GliPtTGVSfQJciZctI38apHQGrwO3sQVvV" />
+						<property name="accessSecret" value="YUqQBJi2VYgssUqRuRj45c9ExeLyHrckIBU1iyNyc" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>
+				<entry key="dag">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219135980" />
+						<property name="accessToken" value="1219135980-4DVrNZrBeoCcBRTa8w0aXbKFA2rss2Zeh7ByLEX" />
+						<property name="accessSecret" value="V8QIEvQkye5yvMD221BEPGsn3FqH03JssN1F9GvlM" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>
+				<entry key="dap">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219149979" />
+						<property name="accessToken" value="1219149979-kgExtBRA6qQDjAvWc97l2ooMiD0Xo9jW9vJFDGt" />
+						<property name="accessSecret" value="yz8MXNk6D1ZunJl7CAWaH3yaL4liVso68uSHOIvHerc" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>								
+				<entry key="db">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219125038" />
+						<property name="accessToken" value="1219125038-RV2GJONeIIjFARh1s3pxcwcHxVj8yPjvyenyPfH" />
+						<property name="accessSecret" value="uWxsW6DMWXwyilt3D7LEmsaD8jQxrFT5kMWPvnU8" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>		
+	
+				<entry key="dd">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218974562" />
+						<property name="accessToken" value="1218974562-789NSO2MfiteplPohf40jJ5Qbpqy7LsI3gBKw5i" />
+						<property name="accessSecret" value="ZxYySdRrUbc86PQv7G01ynlZvZaOHajVqU8uiD8oU" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>		
+				<entry key="df">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219138573" />
+						<property name="accessToken" value="1219138573-NdRv9DVpYO7Mw4pVGwiv61PjMiA0qq2sWs1Jy9N" />
+						<property name="accessSecret" value="uslr7RXsRNaUn9pIffbF3cPJipL1CDGuDPHZUawkVs" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>				
+			<entry key="di">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1218894240" />
+						<property name="accessToken" value="1218894240-UuucTuZfqAcg12Uny20QiTJqwPtiwIZTtb5IjZj" />
+						<property name="accessSecret" value="4h9zq9Zm89WQuZv0NE3uGT6xuPkqhrE3XRyHf1edUSg" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>				
+				<entry key="dl">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219175660" />
+						<property name="accessToken" value="1219175660-xbVVQnSxBwZcWZZlOGXx67zP3RdVq0WVh0N9pLy" />
+						<property name="accessSecret" value="NeisFe9s0vtMgXUMODeC9YMswOq02vKtI8rXzqXt5eE" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry>				
+
+				<entry key="dt">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="1219167884" />
+						<property name="accessToken" value="1219167884-4nLQpOgi6md2uOGeSzOAGuA557QLl1X0Y13vB2v" />
+						<property name="accessSecret" value="hyXaOyNj7YbjwFKuDAD3L0aSsOUwZWRfHLXardu2k80" />
+						<property name="consumerKey" value="Tv6MQ0C8HOnag6I0KVVUw" />
+						<property name="consumerSecret" value="VXpiS0fLgdG2jsFsK6EbXSSYAo00IF6WnjH0gP4cMrU" />
+					</bean>
+				</entry> 
+
+				<entry key="assistenza">
+					<bean class="com.openDams.twitter.configurations.TwitterConfiguration">
+						<property name="user_id" value="583040805" />
+						<property name="accessToken" value="583040805-ZYCsanZV5NxPtoljwdoqHoB85MIcIjdTgQyZ5pYt" />
+						<property name="accessSecret" value="eetgw72GztPOxxe52yOq3bdsA54wzyR1SZJ4i59k" />
+						<property name="consumerKey" value="IwxT9aPUD1222bOy7rMXQ" />
+						<property name="consumerSecret" value="mr1sr88UryUc0Mbar9cN6wWS4GmBEq9jtci4dSPNyw" />
+					</bean>
+				</entry>
+				 
+			</map>
+		</property>
+	</bean>
+	<!--END TESAURO SKOS -->
+</beans>

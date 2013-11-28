@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security" xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+	<global-method-security secured-annotations="enabled">
+	</global-method-security>
+	<http auto-config="false" entry-point-ref="loginUrlAuthenticationEntryPoint">
+		<!-- <intercept-url pattern="/pdf/printPdf.html" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
+		<intercept-url pattern="/recordBridgeController.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/recordTouchController.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/newDossier.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+		<intercept-url pattern="/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/img/custom/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/admin/**" access="ROLE_GOD,ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_GOD,ROLE_ADMIN,ROLE_USER,ROLE_READER" />
+		<http-basic />
+		<logout logout-success-url="/login.html" invalidate-session="true" />
+		<custom-filter ref="formLoginFilter" position="FORM_LOGIN_FILTER" />
+		<remember-me />
+	</http>
+	<b:bean id="authenticationProvider" class="com.openDams.security.AuthenticationProvider">
+		<b:property name="userDetailsService" ref="userDetailsService" />
+	</b:bean>
+	<b:bean id="userDetailsService" class="com.openDams.security.UserDetailsServiceImpl">
+		<b:property name="service" ref="openDamsService" />
+		<b:property name="assembler" ref="assembler" />
+	</b:bean>
+	<b:bean id="assembler" class="com.openDams.security.Assembler" />
+	<b:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<b:property name="providers">
+			<b:list>
+				<b:ref local="authenticationProvider" />
+			</b:list>
+		</b:property>
+	</b:bean>
+	<b:bean id="formLoginFilter" class="com.openDams.security.AuthenticationFilter">
+		<b:property name="authenticationManager" ref="authenticationManager" />
+		<b:property name="authenticationFailureHandler" ref="failureHandler" />
+		<b:property name="authenticationSuccessHandler" ref="successHandler" />
+	</b:bean>
+	<b:bean id="loginUrlAuthenticationEntryPoint" class="com.openDams.security.AuthenticationEntryPoint">
+		<b:property name="loginFormUrl" value="/login.html" />
+	</b:bean>
+	<b:bean id="successHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<b:property name="defaultTargetUrl" value="/desktop.html" />
+	</b:bean>
+	<b:bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<b:property name="defaultFailureUrl" value="/login.html?login_error=1" />
+	</b:bean>
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder hash="md5" />
+		</authentication-provider>
+	</authentication-manager>
+	<b:bean id="archiveRoleTester" class="com.openDams.security.ArchiveRoleTester">
+		<b:property name="service" ref="openDamsService" />
+	</b:bean>
+</b:beans>

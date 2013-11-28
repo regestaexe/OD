@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       ">
+	<!-- VIEW RESOLVER -->
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="openSessionInViewInterceptor" />
+				<ref bean="localeChangeInterceptor" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Caricamento delle properties per l'importazione 
+	<util:properties id="importerProperties" location="classpath:../Importer.properties" />
+	-->
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>WEB-INF/ods.properties</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath">
+			<value>/WEB-INF</value>
+		</property>
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader">file</prop>
+				<prop key="file.resource.loader.description">Velocity File Resource Loader</prop>
+				<prop key="file.resource.loader.class">org.apache.velocity.runtime.resource.loader.FileResourceLoader</prop>
+				<prop key="file.resource.loader.cache">false</prop>
+				<prop key="file.resource.loader.modificationCheckInterval">60</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- GESTIONE DESKTOP INIZIALE -->
+	<bean name="/desktop.html" class="com.openDams.desktop.controller.DesktopController">
+		<!--property name="page" value="desktop/desktop" /-->
+		<property name="page" value="desktop/desktop2" />
+	</bean>
+	<bean name="/applications.html" class="com.openDams.desktop.controller.ApplicationsController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/workspace.html" class="com.openDams.desktop.controller.WorkspaceController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/ajax/skosDesktop.html" class="com.openDams.desktop.controller.SKOSController">
+		<property name="service" ref="openDamsService" />
+		<property name="page_size" value="22" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/multiSearch.html" class="com.openDams.desktop.controller.MultiSearchController">
+		<property name="service" ref="openDamsService" />
+		<property name="configurationSearchReader" ref="configurationSearchReader" />
+	</bean>
+	<bean name="/desktop_adv_search.html" class="com.openDams.desktop.controller.AdvSearchController">
+		<property name="searcher" ref="searcher" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="service" ref="openDamsService" />
+		<property name="queryBuilder" ref="queryBuilder" />
+	</bean>
+	<bean name="/vocabulary.html" class="com.openDams.vocabulary.controller.VocabularyController">
+		<property name="searcher" ref="searcher" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="limit" value="24" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+	</bean>
+	<bean name="/lookUp.html" class="com.openDams.lookup.controller.LookUpController">
+		<property name="searcher" ref="searcher" />
+		<property name="titleManager" ref="titleManager" />
+		<property name="page_size" value="20" />
+		<property name="queryBuilder" ref="queryBuilder" />
+	</bean>
+	<bean name="/system/checkArchives.html" class="com.openDams.system.controller.ChekArchiveController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<!--END GESTIONE DESKTOP INIZIALE -->
+	
+	<!-- FUNZIONI AMMINISTRATIVE -->
+	<bean name="/admin/adminTools.html" class="com.openDams.admin.controller.AdminToolsController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/admin/workspace.html" class="com.openDams.admin.controller.WorkspaceController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	
+	<bean name="/admin/createArchive.html" class="com.openDams.admin.controller.ArchiveController">
+		<property name="service" ref="openDamsService" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+	</bean>
+	
+	<bean name="/admin/indexList.html" class="com.openDams.admin.controller.IndexController">
+		<property name="service" ref="openDamsService" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+		<property name="analyzerClass" value="com.openDams.index.analyzers.IT_Analyzer" />
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="rebuildIndexJob" ref="rebuildIndexJob" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<bean name="/admin/indexListWorkspace.html" class="com.openDams.admin.controller.IndexControllerWorkspace">
+		<property name="service" ref="openDamsService" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+		<property name="analyzerClass" value="com.openDams.index.analyzers.IT_Analyzer" />
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="rebuildIndexJob" ref="rebuildIndexJob" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<bean name="/admin/editXmlConf.html" class="com.openDams.admin.controller.XMLConfController">
+		<property name="searchConfiguration" ref="searchConfiguration" />
+		<property name="relationsConfiguration" ref="relationsConfiguration" />
+	</bean>
+	<bean name="/admin/rebuildTitle.html" class="com.openDams.admin.controller.TitlesController">
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="rebuildTitlesJob" ref="rebuildTitlesJob" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean name="/admin/endPointPublisher.html" class="com.openDams.admin.controller.EndPointController">
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="endPointPublishJob" ref="endPointPublishJob" />
+		<property name="endPointDePublishJob" ref="endPointDePublishJob" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean name="/admin/endPointPublisherWorkspace.html" class="com.openDams.admin.controller.EndPointControllerWorkspace">
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="endPointPublishJob" ref="endPointPublishJob" />
+		<property name="endPointDePublishJob" ref="endPointDePublishJob" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<bean name="/admin/users.html" class="com.openDams.admin.controller.UsersController">
+		<property name="service" ref="openDamsService" />
+		<property name="default_password" value="test" />
+	</bean>
+	<bean name="/admin/user_archives.html" class="com.openDams.admin.controller.ArchivesUsersController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/admin/departments.html" class="com.openDams.admin.controller.DepartmentsController">
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/import.html" class="com.openDams.admin.controller.ImportController">
+		<property name="service" ref="openDamsService" />
+		<property name="titleManager" ref="titleManager" />
+	</bean>
+	<bean name="/admin/magazinesManager.html" class="com.openDams.admin.controller.MagazinesController">
+		<property name="searcher" ref="searcher" />
+		<property name="indexConfiguration" ref="indexConfiguration" />
+		<property name="service" ref="openDamsService" />
+	</bean>
+	<bean name="/admin/archiveStatus.html" class="com.openDams.admin.controller.ArchiveStatusController">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+	
+
+	
+	<bean id="unitaOrganizzativaProvider" class="com.openDams.unitaorganizzativa.utility.UnitaOrganizzativaProvider">
+		<property name="use_external_conf_location" value="true" />
+		<property name="configuration_location" value="${deployLocation}/${applicationName}/rdf/custom" />
+		<property name="file_name" value="unitaOrganizzativa.xml" />
+	</bean>
+	
+	<bean name="/countries.html" class="com.openDams.countries.controller.CountriesController">
+	</bean>
+	<!--END FUNZIONI AMMINISTRATIVE -->
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="customDateEditor" class="org.springframework.beans.propertyeditors.CustomDateEditor">
+		<constructor-arg index="0">
+			<bean class="java.text.SimpleDateFormat">
+				<constructor-arg value="dd/MM/yyyy" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg index="1" value="false" />
+	</bean>
+	<bean name="openSessionInViewInterceptor" class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+		<property name="sessionFactory">
+			<ref bean="mySessionFactory" />
+		</property>
+	</bean>
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/locale</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="0" /><!-- sempre -->
+		<!--property name="cacheSeconds" value="-1"/ --><!-- solo all'avvio -->
+		<property name="fileEncodings" value="UTF-8" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	<!-- Declare the Interceptor -->
+	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName">
+			<value>locale</value>
+		</property>
+	</bean>
+
+	<!-- Declare the Resolver -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<import resource="skos-servlet.xml"/>
+
+	<import resource="documental-servlet.xml"/> 
+
+	<import resource="search-builder-servlet.xml"/>
+	<import resource="db_service.xml"/>
+	<import resource="securityCustom.xml"/>
+	<import resource="showcase-servlet.xml"/>
+	<import resource="upload-servlet.xml"/>
+	<import resource="endpoint-servlet.xml"/>
+
+	<import resource="indexJobs.xml"/>
+</beans>
