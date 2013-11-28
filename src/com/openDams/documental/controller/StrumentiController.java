@@ -1,4 +1,4 @@
-package com.openDams.schedoni.controller;
+package com.openDams.documental.controller;
 
 
 import javax.servlet.http.HttpServletRequest;

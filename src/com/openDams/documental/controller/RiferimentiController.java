@@ -1,4 +1,4 @@
-package com.openDams.schedoni.controller;
+package com.openDams.documental.controller;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.openDams.schedoni.utility; 
+package com.openDams.documental.utility; 
 
 import java.io.File;
 import java.io.FileInputStream;

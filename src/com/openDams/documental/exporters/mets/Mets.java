@@ -1,4 +1,4 @@
-package com.openDams.schedoni.exporters.mets;
+package com.openDams.documental.exporters.mets;
 
 import java.io.File;
 import java.io.FileInputStream;

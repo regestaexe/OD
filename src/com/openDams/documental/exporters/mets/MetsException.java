@@ -1,4 +1,4 @@
-package com.openDams.schedoni.exporters.mets;
+package com.openDams.documental.exporters.mets;
 
 public class MetsException extends Exception {
 

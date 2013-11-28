@@ -1,4 +1,4 @@
-package com.openDams.schedoni.controller;
+package com.openDams.documental.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
