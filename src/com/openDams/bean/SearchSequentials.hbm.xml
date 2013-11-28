@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 3-ott-2011 13.08.29 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.SearchSequentials" table="search_sequentials" >
+        <id name="refIdDepartment" type="int">
+            <column name="ref_id_department" />
+            <generator class="foreign">
+                <param name="property">departments</param>
+            </generator>
+        </id>
+        <one-to-one name="departments" class="com.openDams.bean.Departments" constrained="true"></one-to-one>
+        <property name="sequentialNumber" type="int">
+            <column name="sequential_number" not-null="true" />
+        </property>
+        <property name="prefix" type="string">
+            <column name="prefix" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

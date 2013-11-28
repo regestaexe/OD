@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<element name="id_ConceptScheme" search_alias="id,contents" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/skos:ConceptScheme/@rdf:about</element>
+	<element name="id_Concept" search_alias="id,contents" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/skos:Concept/@rdf:about</element>	
+	<element name="inScheme" search_alias="inScheme" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/skos:inScheme/@rdf:resource</element>
+	<element name="notation_ConceptScheme" search_alias="notation" lucene_store_type="no" key_style="one" >/rdf:RDF/skos:ConceptScheme/skos:notation/text()</element>
+	<element name="notation_Concept" search_alias="notation" lucene_store_type="no" key_style="one"  >/rdf:RDF/skos:Concept/skos:notation/text()</element>
+	<element name="inscheme_ConceptScheme" search_alias="inScheme" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/skos:ConceptScheme/skos:inScheme/@rdf:resource</element>
+	<element name="inscheme_Concept" search_alias="inScheme" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/skos:Concept/skos:inScheme/@rdf:resource</element>
+	
+	<element name="notation_search" search_alias="contents" lucene_store_type="no" key_style="double" classUtil="com.openDams.index.analyzers.IndexCleaner" method="removeDot" >/rdf:RDF/*/skos:notation/text()</element>
+		
+	<element name="label_ConceptScheme" search_alias="label,contents" lucene_store_type="no" key_style="double" db_sort_field="label">/rdf:RDF/skos:ConceptScheme/rdfs:label/text()</element>
+	<element name="label_Concept" search_alias="label,contents" lucene_store_type="no" key_style="double" db_sort_field="label">/rdf:RDF/skos:Concept/rdfs:label/text()</element>
+	<element name="altLabel_ConceptScheme" search_alias="altLabel,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:ConceptScheme/skos:altLabel/text()</element>
+	<element name="altLabel_Concept" search_alias="altLabel,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:Concept/skos:altLabel/text()</element>
+	<element name="scopeNote_ConceptScheme" search_alias="scopeNote,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:ConceptScheme/skos:scopeNote/text()</element>
+	<element name="scopeNote_Concept" search_alias="scopeNote,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:Concept/skos:scopeNote/text()</element>
+	<element name="external_contents" type="external" search_alias="full_text" lucene_store_type="no" key_style="double"/>
+</root>  

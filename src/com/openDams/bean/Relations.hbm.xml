@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-dic-2009 11.35.39 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Relations" table="relations">
+        <composite-id name="id" class="com.openDams.bean.RelationsId">
+            <key-property name="refIdRecord1" type="int">
+                <column name="ref_id_record_1" />
+            </key-property>
+            <key-property name="refIdRecord2" type="int">
+                <column name="ref_id_record_2" />
+            </key-property>
+            <key-property name="refIdRelationType" type="int">
+                <column name="ref_id_relation_type" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="relationTypes" class="com.openDams.bean.RelationTypes" update="false" insert="false" fetch="select">
+            <column name="ref_id_relation_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="recordsByRefIdRecord1" class="com.openDams.bean.Records" update="false" insert="false" fetch="select">
+            <column name="ref_id_record_1" not-null="true" />
+        </many-to-one>
+        <many-to-one name="recordsByRefIdRecord2" class="com.openDams.bean.Records" update="false" insert="false" fetch="select">
+            <column name="ref_id_record_2" not-null="true" />
+        </many-to-one>
+        <property name="relationOrder" type="java.lang.Integer">
+            <column name="relation_order" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" />
+        </property>
+    </class>
+</hibernate-mapping>

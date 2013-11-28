@@ -1,0 +1,38 @@
+<div><span class="container-dipartimento elencoDipartimenti"><input type="hidden" value="{dipartimento}" /></span>
+<div id="scheda" class="scheda"><div class="selectDipartimento"><span class="function-isMyDepartment('&lt;a onclick=&quot;return gestDepartment(\'remove\')&quot; title=&quot;documenti interessante per il mio dipartimento&quot; href=&quot;#n&quot;&gt;&lt;img src=&quot;img/folderYellow32.png&quot; /&gt;&lt;/a&gt;','&lt;a title=&quot;documenti NON interessante per il mio dipartimento&quot; onclick=&quot;return gestDepartment(\'add\')&quot; href=&quot;#n&quot;&gt;&lt;img src=&quot;img/folderGrey32.png&quot; /&gt;&lt;/a&gt;')"></span></div>
+#set ($mapPath ="/configuration/${idArchive}$!{type}/pathsJson.js")
+#set ($ontologyMapPath ="/configuration/ontology/pathsJson.js")
+
+<script type="text/javascript">
+	globalOpt.document.archive=${idArchive};
+	globalOpt.document.jsonMap={};
+	#include(${ontologyMapPath}); 
+	#include(${mapPath}); 
+	var configurazioni = globalOpt.document.jsonMap.configurazioni;
+    //globalOpt.document.jsonMap.configurazioni = configurazioni;
+    
+</script>
+#set ($templatePath ="/configuration/${idArchive}$!{type}/document_template.html")
+#include($templatePath)
+
+ 
+<div class="sezione" id="sezioneAdmin">
+		<div class="head">informazioni gestionali</div>
+		<span  class="if-empty-remove">dipartimento: <span  class="container-dipartimento"><a class="if-empty-default" href="#nn" onclick="return doSimpleSearch('dipartimento:{dipartimento_luceneEscape_afterLastSlash}')" title="ricerca tutte le risorse relative allo stesso dipartimento"><span>non specificato</span><span class="function-getSingleDataFromRDF('rdf/unitaOrganizzativa.xml','ods:unitaOrganizzativa','{dipartimento}')">{dipartimento}</span></a>, </span></span><br />
+		<span>utente: 
+			<span  class="container-gestione_utente">
+				<a class="if-empty-default" href="#nn" onclick="return doSimpleSearch('utente:{gestione_utente}')" title="ricerca tutte le risorse relative allo stesso utente"><span>non specificato</span><span>{gestione_utente}</span></a>
+			</span>
+		</span>
+<!--		<br /><br /> 
+		<span>pubblicato su: 
+			<ul  class="container-odsPubblicato" style="margin-left:15px">
+				<li class="if-empty-default"  ><span>non pubblicato</span>{odsPubblicato_toLink}</li>
+			</ul>
+		</span>-->
+</div>
+
+</div></div>
+<script type="text/javascript">
+ $("#sezioneAdmin").append("<span>identificativo documento: "+globalOpt.document.id+"</span>")
+</script>

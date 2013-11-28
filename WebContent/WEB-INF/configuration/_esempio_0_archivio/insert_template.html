@@ -1,0 +1,17 @@
+<div>
+	<p>
+		<label>titolo</label>
+		<textarea id="titolo" class="edit_field" name="/rdf:RDF/bibo:Book/dc:title/text()" style="font-weight: bold;"></textarea>
+	</p>	
+	<p>
+		<label>data</label> 
+		<input type="text" id="data" name="/rdf:RDF/bibo:Book/dcterms:issued/text()" class="edit_field" data-regexFilter="[^0-9]" data-maxLength="4">
+	</p>
+		
+	<input type="hidden" class="titoloProprio edit_field" name="/rdf:RDF/bibo:Book/isbd:P1004/text()"></input>
+
+	<input type="hidden" name="/rdf:RDF/bibo:Book/bibo:status/text()" class="statoDoc edit_field edit_middle"/>
+	
+	<input type="hidden" class="data edit_field" name="/rdf:RDF/bibo:Book/dcterms:issued/text()"></input>
+	
+</div>

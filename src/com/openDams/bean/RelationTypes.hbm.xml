@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-dic-2009 11.35.39 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.RelationTypes" table="relation_types">
+        <id name="idRelationType" type="java.lang.Integer">
+            <column name="id_relation_type" />
+            <generator class="native" />
+        </id>
+        <property name="label" type="string">
+            <column name="label" length="20" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <set name="relationses" inverse="true" lazy="true" table="relations" fetch="select">
+            <key>
+                <column name="ref_id_relation_type" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Relations" />
+        </set>
+        <!--set name="countRelationses" inverse="true" lazy="true" table="count_relations" fetch="select">
+            <key>
+                <column name="ref_id_relation_type" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.CountRelations" />
+        </set-->
+    </class>
+</hibernate-mapping>

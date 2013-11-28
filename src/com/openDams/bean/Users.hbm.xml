@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-mag-2010 12.10.15 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Users" table="users">
+        <id name="idUser" type="java.lang.Integer">
+            <column name="id_user" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="departments" class="com.openDams.bean.Departments" lazy="false" fetch="select">
+            <column name="ref_id_department" />
+        </many-to-one>
+        <many-to-one name="companies" class="com.openDams.bean.Companies" lazy="false" fetch="select">
+            <column name="ref_id_company" not-null="true" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true" />
+        </property>
+        <one-to-one name="usersProfile" class="com.openDams.bean.UsersProfile" cascade="all"></one-to-one>
+        <one-to-one name="userRoles" class="com.openDams.bean.UserRoles" cascade="all"></one-to-one>
+         <set name="archiveUserRoles" inverse="true" lazy="true" cascade="all-delete-orphan" table="archive_user_role" fetch="select">
+            <key>
+                <column name="ref_id_user" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.ArchiveUserRole" />
+        </set>
+        <set name="noteses" inverse="true" lazy="true" table="notes" fetch="select">
+            <key>
+                <column name="ref_id_user" />
+            </key>
+            <one-to-many class="com.openDams.bean.Notes" />
+        </set>
+        <set name="messageses" inverse="true" lazy="true" table="messages" fetch="select">
+            <key>
+                <column name="ref_id_user" />
+            </key>
+            <one-to-many class="com.openDams.bean.Messages" />
+        </set>
+    </class>
+</hibernate-mapping>

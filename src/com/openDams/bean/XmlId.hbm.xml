@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-feb-2010 16.45.10 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.XmlId" table="xml_id">
+        <id name="refIdArchive" type="int">
+            <column name="ref_id_archive" />
+            <generator class="foreign">
+                <param name="property">archives</param>
+            </generator>
+        </id>
+        <one-to-one name="archives" class="com.openDams.bean.Archives" constrained="true"></one-to-one>
+        <property name="idXml" type="int" lazy="false">
+            <column name="id_xml" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 3-gen-2012 16.33.26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Notes" table="notes">
+        <id name="idNote" type="java.lang.Integer">
+            <column name="id_note" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="departments" class="com.openDams.bean.Departments" fetch="select">
+            <column name="ref_id_department" />
+        </many-to-one>
+        <many-to-one name="archives" class="com.openDams.bean.Archives" fetch="select">
+            <column name="ref_id_archive" />
+        </many-to-one>
+        <many-to-one name="noteTypes" class="com.openDams.bean.NoteTypes" fetch="select">
+            <column name="ref_id_note_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="records" class="com.openDams.bean.Records" fetch="select">
+            <column name="ref_id_record" />
+        </many-to-one>
+        <many-to-one name="users" class="com.openDams.bean.Users" fetch="select">
+            <column name="ref_id_user" />
+        </many-to-one>
+        <property name="noteText" type="string">
+            <column name="note_text" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <property name="noteTitle" type="string">
+            <column name="note_title" />
+        </property>
+    </class>
+</hibernate-mapping>

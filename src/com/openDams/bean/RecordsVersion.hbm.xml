@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4-giu-2010 18.04.42 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.RecordsVersion" table="records_version">
+        <id name="idVersion" type="java.lang.Integer">
+            <column name="id_version" />
+            <generator class="native" />
+        </id>
+        <version name="version" type="int">
+            <column name="version" not-null="true" />
+        </version>
+        <many-to-one name="records" class="com.openDams.bean.Records" fetch="select">
+            <column name="ref_id_record" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <property name="xml" type="binary">
+            <column name="xml" not-null="true" />
+        </property>
+        <property name="versionDate" type="timestamp">
+            <column name="version_date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

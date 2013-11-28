@@ -1,0 +1,10 @@
+.bt_delete_records{
+	width:16px;
+	height:16px;
+    background: url(images/delete_records.gif) no-repeat;
+}
+.bt_restore_records{
+	width:16px;
+	height:16px;
+    background: url(images/restore_records.gif) no-repeat;
+}

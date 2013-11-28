@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ 
+	<element name="broader" 		id_relation="1" 	get_from="1" 	insert_to="1" xpath_separator="">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:broader[99]/@rdf:resource</element>
+	<element name="narrower" 		id_relation="2" 	get_from="1" 	insert_to="1">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:narrower[99]/@rdf:resource</element>
+	<element name="related" 		id_relation="3" 	get_from="1" 	insert_to="1">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:related[99]/@rdf:resource</element>
+	<element name="inScheme" 		id_relation="9" 	get_from="1" 	insert_to="1">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:inScheme[99]/@rdf:resource</element>
+	<element name="hasTopConcept" 	id_relation="10" 	get_from="1" 	insert_to="1">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:hasTopConcept[99]/@rdf:resource</element>
+	<element name="topConceptOf" 	id_relation="11" 	get_from="1" 	insert_to="1">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:topConceptOf[99]/@rdf:resource</element>
+	<element name="broadMatch" 		id_relation="5" 	get_from="1" 	insert_to="16">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:broadMatch[99]/@rdf:resource</element>
+	<element name="narrowMatch" 	id_relation="6" 	get_from="1" 	insert_to="16">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:narrowMatch[99]/@rdf:resource</element>
+	<element name="relatedMatch" 	id_relation="7" 	get_from="1" 	insert_to="16">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:relatedMatch[99]/@rdf:resource</element>
+	<element name="closeMatch" 		id_relation="8" 	get_from="1" 	insert_to="16">/rdf:RDF/*[name()!='owl:Ontology']/@rdf:about,/rdf:RDF/*[name()!='owl:Ontology']/skos:closeMatch[99]/@rdf:resource</element>
+
+
+
+</root>
+                                                                                                                                                                                                                                           

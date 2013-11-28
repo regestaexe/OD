@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<title name="id" separator=" [id] " multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/@rdf:about</title>
+	<title name="notation" separator=" [notation] " multiple_path_separator="ç" multiple_node_separator="£" classUtil="com.openDams.index.analyzers.IndexCleaner" method="importAutoreTitle">/rdf:RDF/*/dc:title/text()</title>
+	<title name="descrizione" separator=" [description] " multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/dc:publisher/text()</title>
+	<title name="griglia" separator=" [griglia] " multiple_path_separator="ç" multiple_node_separator="£" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:subject/@rdf:resource</title>
+	<title name="data" separator="[data]" multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/dcterms:issued/text()</title>
+	<title name="autore" separator="[autore]" multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/skos:altLabel/text()</title>
+	<title name="utente" separator="[user]" multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/skos:changeNote/dc:creator/text()</title>
+	<title name="dipartimento" separator="[dipart]" multiple_path_separator="ç" multiple_node_separator="£" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:provenance/@rdf:resource</title>
+	<title name="adata" separator=" [adata] " multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/dcterms:issued/text()</title>
+</root>

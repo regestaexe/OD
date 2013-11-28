@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-mag-2010 11.42.28 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.UserRoles" table="user_roles">
+       <id name="refIdUser" type="int">
+            <column name="ref_id_user" />
+            <generator class="foreign">
+                <param name="property">users</param>
+            </generator>
+        </id>
+        <many-to-one name="roles" class="com.openDams.bean.Roles" update="false" insert="false" fetch="select">
+            <column name="ref_id_role" not-null="true" />
+        </many-to-one>
+        <one-to-one name="users" class="com.openDams.bean.Users" constrained="true"></one-to-one>
+    </class>
+</hibernate-mapping>

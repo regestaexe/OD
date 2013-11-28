@@ -1,0 +1,103 @@
+<div class="sezione">
+
+	<div class="head">{id_beforeDot}  n&deg;: {id_afterLastSlash} {biboStatus}</div>
+	
+	<div class="if-empty-remove">
+		<div class="if-empty-remove"><br /><span class="bprLabel">autore principale: </span></div>
+		<ul class="container-dctermsCreator sortnodes doTrashRel doScheda">
+			<li data-relationType="24" data-xpath="/rdf:RDF{xpath}"><a
+				href="#no"
+				class="function-doKeywordsAjaxSearch('id:{dctermsCreator_luceneEscape_afterLastSlash}',107,'multisearch')"
+				title="ricerca i documenti relativi allo stesso autore"
+				onclick="return doSimpleSearch('autoreRif:{dctermsCreator_luceneEscape_afterLastSlash}')">{dctermsCreator}</a></li>
+		</ul>
+	</div>
+	
+	<div class="if-empty-remove">
+		<div class="if-empty-remove"><br /><span class="bprLabel">altre responsabilit&agrave;: </span></div>
+				<ul class="container-dctermsContributor sortnodes doTrashRel doScheda">
+					<li data-relationType="20" data-xpath="/rdf:RDF{xpath}"><a
+						href="#no"
+						class="function-doKeywordsAjaxSearch('id:{dctermsContributor_luceneEscape_afterLastSlash}',107,'multisearch')"
+						title="ricerca i documenti relativi allo stesso autore"
+						onclick="return doSimpleSearch('autoreRif:{dctermsContributor_luceneEscape_afterLastSlash}')">{dctermsContributor}</a></li>
+				</ul>
+	</div>
+		
+	<div class="if-empty-remove"><br /><span class="bprLabel">titolo: </span>{titolo}</div>		
+
+	<div class="if-empty-remove"><br /><span class="bprLabel">edizione: </span>{biboEdition}</div>
+
+	<div class="if-empty-remove"><br /><span class="bprLabel">responsabilità edizione: </span>{isbdRespEd}</div>
+
+	<div class="if-empty-remove"><br /><span class="bprLabel">pubblicazione: </span><span class="if-empty-remove">{isbdLuogo}</span><span class="if-empty-remove">: {isbdEditore}</span><span class="if-empty-remove">, {dataPubblicazioneSimple_formatItalian}</span></div> 
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">data discorsiva: </span>{isbdAnno}</div>
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">descrizione fisica: </span>{dctermsExtent}</div>
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">serie: </span>{isbdIndicazione}</div>
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">numero di serie: </span>{isbdNserie}</div>
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">note: </span>{skosNote}</div>
+
+	<div class="if-empty-remove"><br /><span class="bprLabel">note editoriali: </span>{skosEditorialNote}</div>
+
+	<div class="if-empty-remove"><br /><span class="bprLabel">sito web dell'editore: </span>{foafHomePage}</div>
+
+	<div class="if-empty-remove"><br /><span class="bprLabel">stato del documento: </span>{biboStatus}</div>
+	
+	<div class="if-empty-remove"><br /><em>disponibile per la pubblicazione dal {dctermsAvailable_formatItalian}</em></div>
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">n&deg; record: </span>{id_afterLastSlash}</div>
+	
+	<div class="if-empty-remove"><br /><span class="bprLabel">lingua: </span>{lingua}</div>
+	
+	<div class="if-empty-remove">
+		<div class="if-empty-remove"><br /><span class="bprLabel">classificazione: </span></div>
+		<ul class="container-dctermsSubject">
+			<li><a href="#no"
+				class="function-doKeywordsAjaxSearch('id:{dctermsSubject_luceneEscape_afterLastSlash}',101,null,true)"
+				title="ricerca i documenti relativi alla voce di classificazione"
+				onclick="return doSimpleSearch('griglia:{dctermsSubject_luceneEscape_afterLastSlash}')">{dctermsSubject_luceneEscape_afterLastSlash}</a></li>
+		</ul>
+	</div>	
+	
+	<div class="if-empty-remove">
+		<div class="if-empty-remove"><br /><span class="bprLabel">periodo storico: </span></div> 
+		<ul class="container-coverage  if-empty-remove">
+			<li><a href="#no" onclick="return doSimpleSearch('coverage:{coverage_luceneEscape}')">{coverage}</a></li>
+		</ul>
+	</div>
+	
+	<div class="if-empty-remove">
+		<div><br /><span class="bprLabel">fonte: </span></div>
+		<ul class="container-dctermsSource doScheda doTrashRel"> 
+			<li data-relationType="33" data-xpath="/rdf:RDF{xpath}">
+				<a href="#no"
+				class="function-doKeywordsAjaxSearch('id:{dctermsSource_luceneEscape_afterLastSlash}',108,'multisearch')"
+				onclick="return doSimpleSearch('source:{dctermsSource_luceneEscape_afterLastSlash}')">{dctermsSource}</a>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+  
+
+
+<div class="sezione strumenti">
+	<div class="head">Strumenti</div>		
+		
+		<ul data-function='["endpointPublisher","#strumenti","{biboStatus}"]' id="strumenti">
+			<li><a href="#" id="segnalaDocumento" onClick="sendRecord()"><img src="img/segnala.png" alt="segnala documento"/><span> Segnala documento</span></a></li>
+	 	</ul>
+</div>
+
+<div class="sezione  relazioni">
+	<input type="hidden" value="15" />
+	<div class="head">altre risorse associate</div>
+	<span class="elementiAssociatiLoad"></span>
+	<ul class="elementiAssociati"></ul>
+</div>
+

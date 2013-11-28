@@ -1,0 +1,430 @@
+* {
+	font-family: Arial;
+}
+
+html {
+	border: 0 none; font-weight: normal; margin: 0; padding: 0; margin: 0; font-size: 14px; line-height: 15px;
+}
+
+.rigaDoppia {
+	height: 1px; padding: 0;
+}
+
+body {
+	font-size: 14px; line-height: 15px; color: #222; background: #fff; font-weight: normal; font-family: Arial; width: 610px; margin: 0 auto; text-align: justify;
+}
+
+.preview_link {
+	font-family: Arial; color: #4373A2; font-size: 14px; line-height: 15px; text-decoration: none;
+}
+
+.tag_list {
+	font-family: Arial; color: #4373A2; font-size: 14px; line-height: 16px; text-decoration: none; display: block; text-align: left;
+}
+
+.preview_link_big {
+	font-family: Arial; color: #4373A2; text-decoration: none;
+}
+
+a {
+	color: #4373A2; font-family: Arial; text-decoration: none;
+}
+
+.hr {
+	font-family: Arial; font-size: 1px; line-height: 1px; background: none repeat scroll 0 0 #c6d8ec; height: 1px; overflow: hidden;
+}
+
+a:hover {
+	font-family: Arial; color: #4373A2; text-decoration: none;
+}
+
+a.noHover:HOVER {
+	font-family: Arial; color: #222; text-decoration: none;
+}
+
+h2 {
+	font-family: Arial; color: #4373A2; margin: 0; padding: 0 0 5px 0; line-height: 26px; font-size: 23px;
+}
+
+h3 {
+	font-family: Arial; color: #4373A2; font-weight: bold; margin: 0; padding: 0; font-size: 17px; line-height: 19px; padding: 0;
+}
+
+h4 {
+	font-family: Arial; color: #4373A2; margin: 0; padding: 0; font-size: 16px; line-height: 19px; padding: 0;
+}
+
+h5 {
+	font-family: Arial; color: #4373A2; font-size: 15px; line-height: 17px;
+}
+
+strong {
+	font-family: Arial; font-weight: bold; text-align: justify;
+}
+
+h3.sommario {
+	font-family: Arial; color: #bbbbbb; font-weight: bold; font-size: 14px; line-height: 16px; margin: 0; padding: 0;
+}
+
+.hidden_link {
+	font-family: Arial; font-weight: bold; text-decoration: none; color: #4373A2;
+}
+
+.blu {
+	color: #4373A2;
+}
+.rosso{color: red;}
+
+span.hidden_link {
+	font-family: Arial; color: #bbbbbb;
+}
+
+* {
+	font-family: Arial; border-spacing: 0;
+}
+
+table {
+	font-family: Arial; border-collapse: collapse; border-spacing: 0; border: 0; padding: 0; margin: 0
+}
+
+td {
+	font-family: Arial; border-collapse: collapse; border-spacing: 0; border: 0; padding: 0; margin: 0
+}
+
+tr {
+	font-family: Arial; border-collapse: collapse; border-spacing: 0; border: 0; padding: 0; margin: 0
+}
+
+th {
+	font-family: Arial; border-collapse: collapse; border-spacing: 0; border: 0; padding: 0; margin: 0
+}
+
+.preview_link:HOVER {
+	font-family: Arial; text-decoration: underline;
+}
+
+.nomargin {
+	font-family: Arial; margin: 0
+}
+
+hr {
+	font-family: Arial; background: none repeat scroll 0 0 #c6d8ec; color: #c6d8ec; float: none; height: 2px; margin: 0; padding: 0; width: 720px;
+}
+
+hr.light {
+	font-family: Arial; background: none repeat scroll 0 0 #c6d8ec; border: medium none; clear: both; color: #c6d8ec; float: none; height: 1px; margin: 0px auto; width: 720px;
+}
+
+hr.space {
+	font-family: Arial; background: none repeat scroll 0 0 #FFFFFF; color: #FFFFFF; visibility: hidden;
+}
+
+.trblue {
+	font-family: Arial; background: none repeat scroll 0 0 #F0F4F9; font-size: 13px;
+}
+
+.trblue * {
+	font-family: Arial; font-size: 11px; line-height: 13px;
+}
+
+td {
+	font-family: Arial; font-weight: normal; text-align: left; line-height: 15px; font-size: 14px;
+}
+
+th,td,caption {
+	font-family: Arial; padding: 0;
+}
+
+li {
+	font-family: Arial; line-height: 15px; font-size: 14px; padding: 0; margin: 0; margin-left: -18px; text-align: justify;
+}
+
+.ulno {
+	font-family: Arial; line-height: 15px; font-size: 14pìx; margin: 15px 0 15px 0; text-align: justify;
+}
+
+ul,ol {
+	font-family: Arial; line-height: 15px; font-size: 14px; margin: 0; text-align: justify;
+}
+
+td table {
+	border: 0
+}
+
+td td {
+	border-width: 1px; border-style: solid; color: #222; padding: 4px;
+}
+
+td th {
+	border-width: 1px; border-style: solid; color: #222; padding: 4px;
+}
+
+.strong {
+	font-family: Arial; font-weight: bold;
+}
+
+p {
+	font-family: Arial; word-spacing: 0; letter-spacing: 0; padding: 0; margin: 0; text-indent: 12px; line-height: 15px; font-size: 14px; -webkit-margin-before: 0; -webkit-margin-after: 0; -webkit-margin-start: 0; -webkit-margin-end: 0;
+}
+
+td td p {
+	text-indent: 0
+}
+
+.tagged {
+	text-decoration: none;
+}
+
+.span_page_break { /*page-break-after: always;*/
+	
+}
+
+.box_evidenza {
+	border: 1px solid #222; padding: 5px 0 5px 0; background: #CCC; display: block;
+}
+
+img {
+	margin: 5px;
+}
+
+blockquote {
+	border: 1px solid #222; padding: 10px; background: #fff; margin: 14px 0 14px 0
+}
+ 
+
+#footerTab td {
+	line-height: 10px;
+}
+
+#footerTab .hr {
+	line-height: 1px;
+}
+
+.testo_ridotto,.testo_ridotto 
+*,.testo_ridotto ul 
+li,.testo_ridotto ol li {
+	font-size: 13px; line-height: 14px; min-height: 14px; text-indent: 0;
+}
+
+.testo_grande,.testo_grande 
+*,.testo_grande ul 
+li,.testo_grande ol li {
+	font-size: 15px; line-height: 16px; min-height: 16px; text-indent: 0;
+}
+
+.testo_superRidotto,.testo_superRidotto 
+*,.testo_superRidotto ul 
+li,.testo_superRidotto ol li {
+	font-size: 11px; line-height: 12px; min-height: 12px; text-indent: 0;
+}
+
+.testo_medio *,.testo_medio,.testo_medio ul li,.testo_medio ol li {
+	font-size: 14px; line-height: 15px; min-height: 15px;
+}
+
+li .testo_medio {
+	text-indent: 0;
+}
+
+.testo_ridotto_blu,.testo_ridotto_blu *,.testo_ridotto_blu ul li,.testo_ridotto_blu ol li {
+	font-size: 13px; line-height: 14px; color: #4373A2; min-height: 14px;
+}
+div{min-height: 15px;}
+li .testo_medio {
+	text-indent: 0
+}
+
+.testo_medio_blu *,.testo_medio_blu,.testo_medio_blu ul li,.testo_medio_blu ol li {
+	font-size: 14px; line-height: 15px; text-indent: 0; color: #4373A2; min-height: 15px;
+}
+
+.testo_ridotto sub {
+	font-size: 65%; line-height: 55%;
+}
+
+.testo_medio sub {
+	font-size: 65%; line-height: 55%;
+}
+
+sub {
+	font-size: 65%; line-height: 55%;
+}
+
+body.mceForceColors {
+	background: #FFF; color: #000;
+}
+
+.mceItemTable,.mceItemTable td,.mceItemTable th,.mceItemTable caption,.mceItemVisualAid {
+	border: 1px dashed #BBB;
+}
+
+a.mceItemAnchor {
+	display: inline-block; width: 11px !important; height: 11px !important; background: url(img/items.gif) no-repeat 0 0;
+}
+
+span.mceItemNbsp {
+	background: #DDD
+}
+
+td.mceSelected,th.mceSelected {
+	background-color: #3399ff !important
+}
+
+table td,table th {
+	cursor: text
+}
+
+ins {
+	border-bottom: 1px solid green; text-decoration: none; color: green
+}
+
+del {
+	color: red; text-decoration: line-through
+}
+
+cite {
+	border-bottom: 1px dashed blue
+}
+
+acronym {
+	border-bottom: 1px dotted #CCC; cursor: help
+}
+
+abbr {
+	border-bottom: 1px dashed #CCC; cursor: help
+}
+
+* html body {
+	scrollbar-3dlight-color: #F0F0EE; scrollbar-arrow-color: #676662; scrollbar-base-color: #F0F0EE; scrollbar-darkshadow-color: #DDD; scrollbar-face-color: #E0E0DD; scrollbar-highlight-color: #F0F0EE; scrollbar-shadow-color: #F0F0EE; scrollbar-track-color: #F5F5F5;
+}
+
+img:-moz-broken {
+	-moz-force-broken-image-icon: 1; width: 24px; height: 24px
+}
+
+font[face=mceinline] {
+	font-family: inherit !important
+}
+
+dfn {
+	background-color: #77FAEF; font-style: inherit; padding: inherit; margin: inherit; font-weight: inherit;
+}
+
+li p {
+	text-indent: 0
+}
+
+li p.testo_medio {
+	text-indent: 0
+}
+
+li p.testo_ridotto {
+	text-indent: 0
+}
+
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */
+/* cache !!!! */

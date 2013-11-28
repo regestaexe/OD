@@ -1,0 +1,501 @@
+/*!
+* Ext JS Library 4.0
+* Copyright(c) 2006-2011 Sencha Inc.
+* licensing@sencha.com
+* http://www.sencha.com/license
+*/
+
+#poweredby {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    z-index: 15000;
+
+    /* IE 5-7 */
+    filter: alpha(opacity=70);
+    /* Netscape */
+    -moz-opacity: 0.7;
+    /* Safari 1.x */
+    -khtml-opacity: 0.7;
+    /* Good browsers */
+    opacity: 0.7;
+}
+
+#poweredby div {
+    position: relative;
+    width: 100px;
+    height: 25px;
+    background-image: url(../../../img/desktop/padLogo.png);
+    background-repeat: no-repeat;
+}
+
+/* The simple background image PNG does not work in IE6-8, but does in IE9 */
+.x-ie6 #poweredby div,
+.x-ie7 #poweredby div,
+.x-ie8 #poweredby div {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/powered-by-ext-js.png', sizingMethod='scale');
+}
+
+/*----------------------------------------------------
+    Start Button
+*/
+
+.ux-start-button-icon {
+    background-image: url(../../../img/desktop/taskbar/start.png) !important;
+    background-color: transparent;
+}
+
+.ux-start-button .x-btn-arrow {
+    background-image: none;
+}
+
+.ux-start-button .x-btn-arrow-right {
+    padding-left: 10px;
+}
+
+.ux-taskbar {
+    padding-left: 4px !important;
+}
+
+/*
+    Start Button (Black)
+*/
+
+.ux-desktop-black .ux-start-button {
+    height: 28px;
+    padding: 0px;
+    display: block;
+}
+
+.ux-desktop-black .ux-start-button em {
+    margin-top: 5px;
+}
+
+.ux-desktop-black .ux-start-button .x-btn-inner {
+    color: black;
+    font-size:11px;
+    font-weight: bold;
+}
+
+.ux-desktop-black .ux-start-button {
+    background-image: -moz-linear-gradient(center top , #E4F3FF, #D9EDFF 48%, #C2D8F2 52%, #C6DCF6);
+    border-radius: 8px 8px 8px 8px;
+    border-color: #81A4D0;
+}
+
+/*----------------------------------------------------
+    Start Menu
+*/
+
+.ux-start-menu-toolbar .x-btn-inner {
+    text-align: left;
+}
+
+.ux-start-menu-toolbar {
+    padding: 4px !important;
+}
+
+/*----------------------------------------------------
+    TaskBar
+*/
+
+.ux-taskbar .x-toolbar {
+    background: transparent none;
+    border-color: transparent;
+}
+
+.x-ie6 .ux-taskbar .x-toolbar {
+    border-color: #d3e1f1;
+}
+
+.ux-desktop-windowbar .x-btn-inner,
+.x-nbr .ux-desktop-windowbar .x-btn-icon-text-left button {
+    text-align: left !important;
+}
+
+.ux-taskbar .x-toolbar {
+    height: 28px;
+}
+
+.ux-taskbar {
+    height: 28px;
+    padding: 0;
+}
+
+.x-toolbar .x-toolbar {
+    padding: 0;
+}
+
+/*
+    TaskBar (Black)
+*/
+
+.ux-desktop-black .ux-taskbar {
+    background: transparent url('../../../img/desktop/taskbar/black/taskbar-start-panel-bg.gif') repeat-x left top;
+    border-color: transparent;
+    /*height: 30px;*/
+}
+
+.ux-desktop-black .ux-taskbar .x-splitter {
+    background: transparent url(../../../img/desktop/taskbar/black/taskbar-split-h.gif) no-repeat scroll 0 -2px;
+}
+
+.ux-desktop-black .ux-taskbar .x-toolbar-text {
+    color: white !important;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-default-toolbar-small-over {
+    background-color: yellow;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-inner {
+    color: white;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-pressed .x-btn-inner, .ux-taskbar .x-btn-over .x-btn-inner {
+    color: black;
+}
+
+/*----------------------------------------------------
+    Tray Clock
+*/
+
+.ux-desktop-trayclock {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/*----------------------------------------------------
+    Desktop DataView
+*/
+
+.ux-wallpaper {
+    background-color: #3d71b8;
+}
+
+.ux-wallpaper-tiled {
+    background-repeat: repeat;
+}
+
+.ux-desktop-shortcut {
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    width: 64px;
+    height: 70px;
+    float:left
+}
+
+.ux-desktop-shortcut-icon {
+    width: 48px;
+    height: 48px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.ux-desktop-shortcut-text {
+    font: normal 10px tahoma,arial,verdana,sans-serif;
+    text-decoration: none;
+    padding-top: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.x-view-over .ux-desktop-shortcut-text {
+    text-decoration: underline;
+}
+
+
+/*----------------------------------------------------
+    Various icon classes
+*/
+
+.accordion-shortcut {
+    background-image: url(../../../img/desktop/im48x48.png);
+}
+
+.cpu-shortcut {
+    background-image: url(../../../img/desktop/statusLarge.png);
+}
+
+.grid-shortcut {
+    background-image: url(../../../img/desktop/grid48x48.png);
+}
+
+.notepad-shortcut {
+    background-image: url(../../../img/desktop/notepadLarge.png);
+    width: 46px;
+    height: 46px;
+}
+
+.messageManager-shortcut {
+    background-image: url(../../../img/archive_img/iconMail48.png);
+}
+.basket-shortcut {
+    background-image: url(../../../img/archive_img/basket48.png);
+}
+.archive_1-shortcut {
+    background-image: url(../../../img/archive_img/archive_1_48.gif);
+}
+.archive_16-shortcut {
+    background-image: url(../../../img/archive_img/archive_16_48.gif);
+}
+.archive_101-shortcut {
+    background-image: url(../../../img/archive_img/archive_101_48.gif);
+}
+.archive_10-shortcut {
+    background-image: url(../../../img/archive_img/archive_10_48.gif);
+}
+.archive_11-shortcut {
+    background-image: url(../../../img/archive_img/archive_11_48.gif);
+}
+.archive_12-shortcut {
+    background-image: url(../../../img/archive_img/archive_12_48.gif);
+}
+.archive_13-shortcut {
+    background-image: url(../../../img/archive_img/archive_13_48.gif);
+}
+.archive_14-shortcut {
+    background-image: url(../../../img/archive_img/archive_14_48.gif);
+}
+.archive_15-shortcut {
+    background-image: url(../../../img/archive_img/archive_15_48.gif);
+}
+.archive_2-shortcut {
+    background-image: url(../../../img/archive_img/archive_2_48.gif);
+}
+.archive_4-shortcut {
+    background-image: url(../../../img/archive_img/archive_4_48.gif);
+}
+.archive_5-shortcut {
+    background-image: url(../../../img/archive_img/archive_5_48.gif);
+}
+.archive_6-shortcut {
+    background-image: url(../../../img/archive_img/archive_6_48.gif);
+}
+.archive_7-shortcut {
+    background-image: url(../../../img/archive_img/archive_7_48.gif);
+}
+.archive_8-shortcut {
+    background-image: url(../../../img/archive_img/archive_8_48.gif);
+}
+.archive_9-shortcut {
+    background-image: url(../../../img/archive_img/archive_9_48.gif);
+}
+.archive_102-shortcut {
+    background-image: url(../../../img/archive_img/archive_102_48.gif);
+}
+.archive_103-shortcut {
+    background-image: url(../../../img/archive_img/archive_103_48.gif);
+}
+.archive_104-shortcut {
+    background-image: url(../../../img/archive_img/archive_104_48.gif);
+}
+.archive_105-shortcut {
+    background-image: url(../../../img/archive_img/archive_105_48.gif);
+}
+.archive_106-shortcut {
+    background-image: url(../../../img/archive_img/archive_106_48.gif);
+}
+.archive_107-shortcut {
+    background-image: url(../../../img/archive_img/archive_107_48.gif);
+}
+
+.archive_18-shortcut {
+    background-image: url(../../../img/archive_img/archive_18_48.gif);
+}
+.twitter-shortcut {
+    background-image: url(../../../img/archive_img/archive_5002_48.gif);
+}
+
+.notes-shortcut {
+    background-image: url(../../../img/archive_img/note.png);
+}
+
+
+.archive_1_icon {
+    background-image: url(../../../img/archive_img/archive_1.gif);
+}
+.archive_16_icon {
+    background-image: url(../../../img/archive_img/archive_16.gif);
+}
+.archive_101_icon {
+    background-image: url(../../../img/archive_img/archive_101.gif);
+}
+.archive_10_icon {
+    background-image: url(../../../img/archive_img/archive_10.gif);
+}
+.archive_11_icon {
+    background-image: url(../../../img/archive_img/archive_11.gif);
+}
+.archive_12_icon {
+    background-image: url(../../../img/archive_img/archive_12.gif);
+}
+.archive_13_icon {
+    background-image: url(../../../img/archive_img/archive_13.gif);
+}
+.archive_14_icon {
+    background-image: url(../../../img/archive_img/archive_14.gif);
+}
+.archive_15_icon {
+    background-image: url(../../../img/archive_img/archive_15.gif);
+}
+.archive_2_icon {
+    background-image: url(../../../img/archive_img/archive_2.gif);
+}
+.archive_4_icon {
+    background-image: url(../../../img/archive_img/archive_4.gif);
+}
+.archive_5_icon {
+    background-image: url(../../../img/archive_img/archive_5.gif);
+}
+.archive_6_icon {
+    background-image: url(../../../img/archive_img/archive_6.gif);
+}
+.archive_7_icon {
+    background-image: url(../../../img/archive_img/archive_7.gif);
+}
+.archive_8_icon {
+    background-image: url(../../../img/archive_img/archive_8.gif);
+}
+.archive_9_icon {
+    background-image: url(../../../img/archive_img/archive_9.gif);
+}
+.archive_102_icon {
+    background-image: url(../../../img/archive_img/archive_102.gif);
+}
+.archive_103_icon {
+    background-image: url(../../../img/archive_img/archive_103.gif);
+}
+.archive_104_icon {
+    background-image: url(../../../img/archive_img/archive_104.gif);
+}
+.archive_105_icon {
+    background-image: url(../../../img/archive_img/archive_105.gif);
+}
+.archive_106_icon {
+    background-image: url(../../../img/archive_img/archive_106.gif);
+}
+.archive_107_icon {
+    background-image: url(../../../img/archive_img/archive_107.gif);
+}
+.archive_18_icon {
+    background-image: url(../../../img/archive_img/archive_18.gif);
+}
+.archive_5002_icon {
+    background-image: url(../../../img/archive_img/archive_5002.gif);
+}
+
+
+.x-ie6 .accordion-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../img/desktop//im48x48.png', sizingMethod='scale');
+}
+
+.x-ie6 .cpu-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../img/desktop//statusLarge.png', sizingMethod='scale');
+}
+
+.x-ie6 .grid-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../img/desktop//grid48x48.png', sizingMethod='scale');
+}
+
+.x-ie6 .notepad-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../img/desktop//notepadLarge.png', sizingMethod='scale');
+}
+.x-ie6 .messageManager-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../img/archive_img/iconMail48.png', sizingMethod='scale');
+}
+.x-ie6 .basket-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../img/archive_img/basket48.png', sizingMethod='scale');
+}
+.video {
+    background-image: url(../../../img/desktop/gears.gif);
+}
+
+.bogus {
+    background-image: url( ../../../img/desktop/bogus.png ) !important;
+}
+
+.notepad {
+    background-image: url( ../../../img/desktop/bogus.png ) !important;
+}
+
+.logout {
+    background-image: url( ../../../img/desktop/logout.gif ) !important;
+}
+
+.settings {
+    background-image: url( ../../../img/desktop/gears.gif ) !important;
+}
+.messages_manager {
+    background-image:url(../../../img/desktop/message.png) !important;
+}
+.basket {
+    background-image:url(../../../img/desktop/basket.png) !important;
+}
+.help {
+    background-image: url( ../../../img/desktop/help-icon.gif ) !important;
+}
+.icon-grid {
+    background-image:url( ../../../img/desktop/grid.png ) !important;
+}
+.add {
+    background-image:url(../../../img/desktop/icons/fam/add.gif) !important;
+}
+.option {
+    background-image:url(../../../img/desktop/icons/fam/plugin.gif) !important;
+}
+.remove {
+    background-image:url(../../../img/desktop/icons/fam/delete.gif) !important;
+}
+.save {
+    background-image:url(../../../img/desktop/icons/save.gif) !important;
+}
+.accordion {
+    background-image:url(../../../img/desktop/accordian.gif) !important;
+}
+.tabs {
+    background-image:url(../../../img/desktop/tabs.gif) !important;
+}
+
+/*----------------------------------------------------
+    IM window icons
+*/
+
+.user {
+    background-image:url( ../../../img/desktop/icons/fam/user.gif ) !important;
+}
+
+.user-add {
+    background-image:url(../../../img/desktop/icons/fam/user_add.gif) !important;
+}
+
+.user-delete {
+    background-image:url(../../../img/desktop/icons/fam/user_delete.gif) !important;
+}
+
+.connect {
+    background-image:url(../../../img/desktop/icons/fam/connect.gif) !important;
+}
+
+.user-girl {
+    background-image:url(../../../img/desktop/icons/fam/user_female.gif) !important;
+}
+
+.user-kid {
+    background-image:url(../../../img/desktop/icons/fam/user_green.gif) !important;
+}
+
+.user-suit {
+    background-image:url(../../../img/desktop/icons/fam/user_suit.gif) !important;
+}

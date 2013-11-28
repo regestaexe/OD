@@ -1,0 +1,35 @@
+<div><span class="container-dipartimento elencoDipartimenti"><input type="hidden" value="{dipartimento}" /></span>
+<div id="scheda" class="scheda archive_container_color" style="padding:0;border:0;">
+
+<div class="selectDipartimento"><span class="function-isMyDepartment('&lt;img src=&quot;img/folderYellow16.png&quot;/&gt;','&lt;img src=&quot;img/folderGrey16.png&quot;/&gt;')"></span></div>
+
+#set ($mapPath ="/configuration/${idArchive}$!{type}/pathsJson.js")
+#set ($ontologyMapPath ="/configuration/ontology/pathsJson.js")<script type="text/javascript">
+	globalOpt.document.archive=${idArchive};
+	globalOpt.document.jsonMap={};
+	#include(${ontologyMapPath}); 
+	#include(${mapPath}); 
+	var configurazioni = globalOpt.document.jsonMap.configurazioni;
+</script>
+#set ($templatePath ="/configuration/${idArchive}$!{type}/search_result_template.html")
+#include($templatePath)
+#*
+<div class="sezione"><div class="head">annotazioni<div style="float:right"><a href="#aa" id="aggiungiAnnotazione">[aggiungi]</a></div></div><span id="annotazioniLoad"></span>
+	<ul id="annotazioniDipartimento" style="display:none;margin-bottom:10px"><li style="padding-bottom:5px"><strong>dal mio dipartimento</strong></li></ul>
+	<ul id="annotazioniAltroDipartimento" style="display:none"><li style="padding-bottom:5px"><strong>di altri dipartimenti</strong></li></ul>
+</div>
+*#
+#*
+<div class="sezione">
+		<div class="head">informazioni gestionali <a href="#nogo" class="open_close_link" onclick="openCloseInfo(this);">+</a></div>
+		<div class="open_close" style="margin:0;padding:0;display:none;">
+			<span>dipartimento: <span  class="container-dipartimento"><a class="if-empty-default" href="#nn" title="ricerca tutte le risorse relative allo stesso dipartimento"><span>non specificato</span><span class="function-getSingleDataFromRDF('rdf/unitaOrganizzativa.xml','ods:unitaOrganizzativa','{dipartimento}')">{dipartimento}</span></a>, </span></span><br />
+			<span>utente: 
+				<span  class="container-gestione_utente">
+					<a class="if-empty-default" href="#nn"  title="ricerca tutte le risorse relative allo stesso utente"><span>non specificato</span><span>{gestione_utente}</span></a>
+				</span>
+			</span>
+		</div>
+</div>
+*#
+</div></div>

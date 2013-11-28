@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-dic-2009 11.35.39 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Records" table="records">
+        <id name="idRecord" type="java.lang.Integer">
+            <column name="id_record" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="recordTypes" class="com.openDams.bean.RecordTypes" fetch="select">
+            <column name="ref_id_record_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="archives" class="com.openDams.bean.Archives" lazy="false" fetch="select">
+            <column name="ref_id_archive" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" />
+        </property>
+        <property name="xml" type="binary">
+            <column name="xml" />
+        </property>
+        <property name="creationDate" type="timestamp">
+            <column name="creation_date" length="19" />
+        </property>
+        <property name="modifyDate" type="timestamp">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="phisicalPath" type="string">
+            <column name="phisical_path" />
+        </property>
+         <property name="position" type="java.lang.Integer">
+            <column name="position" />
+        </property>
+        <property name="depth" type="java.lang.Integer">
+            <column name="depth" />
+        </property>
+        <property name="xmlId" type="string">
+            <column name="xml_id" length="250" />
+        </property>
+        <property name="deleted" type="java.lang.Boolean">
+            <column name="deleted" />
+        </property>
+         <set name="recordsVersions" inverse="true" lazy="true" table="records_version" order-by="version desc" fetch="select">
+            <key>
+                <column name="ref_id_record" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.RecordsVersion" />
+        </set>
+        <set name="relationsesForRefIdRecord1" inverse="true" cascade="all-delete-orphan" lazy="true" table="relations" fetch="select" order-by="relation_order,ref_id_relation_type">
+            <key>
+                <column name="ref_id_record_1" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Relations" />
+        </set>
+        <set name="relationsesForRefIdRecord2" inverse="true" cascade="all-delete-orphan" lazy="true" table="relations" fetch="select" order-by="relation_order,ref_id_relation_type">
+            <key>
+                <column name="ref_id_record_2" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Relations" />
+        </set>
+		<set name="noteses" inverse="true" lazy="true" table="notes" fetch="select">
+            <key>
+                <column name="ref_id_record" />
+            </key>
+            <one-to-many class="com.openDams.bean.Notes" />
+        </set>
+    </class>
+</hibernate-mapping>

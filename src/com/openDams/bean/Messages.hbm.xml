@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5-mar-2012 16.54.07 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Messages" table="messages">
+        <id name="idMessage" type="java.lang.Integer">
+            <column name="id_message" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="messageTypes" class="com.openDams.bean.MessageTypes" fetch="select">
+            <column name="ref_id_message_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="departments" class="com.openDams.bean.Departments" fetch="select">
+            <column name="ref_id_department" />
+        </many-to-one>
+        <many-to-one name="usersByRefIdUserSender" class="com.openDams.bean.Users" fetch="select">
+            <column name="ref_id_user_sender" />
+        </many-to-one>
+        <many-to-one name="usersByRefIdUser" class="com.openDams.bean.Users" fetch="select">
+            <column name="ref_id_user" />
+        </many-to-one>
+        <many-to-one name="usersByRefIdUserTo" class="com.openDams.bean.Users" fetch="select">
+            <column name="ref_id_user_to" />
+        </many-to-one>
+        <property name="messageText" type="string">
+            <column name="message_text" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <property name="object" type="string">
+            <column name="object" length="500" not-null="true" />
+        </property>
+        <property name="readed" type="boolean">
+            <column name="readed" not-null="true" />
+        </property>
+        <property name="modal" type="boolean">
+            <column name="modal" not-null="true" />
+        </property>
+        <property name="validity" type="timestamp">
+            <column name="validity" length="19" />
+        </property>
+        <property name="interest" type="boolean">
+            <column name="interest" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

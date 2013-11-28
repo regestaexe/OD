@@ -1,0 +1,150 @@
+<project name="ods" basedir="." default="ods">
+	<!--property file="build.properties" / -->
+	<property name="tomcatHome" value="C:/xampp/tomcat" />
+	<property name="deployLocation" value="C:/xampp/tomcat/webapps" />
+	<property name="mainProjectLocation" value="../OpenDams_os" />
+	<property name="applicationName" value="ods" />
+	<property name="springFilesLocation" value="devel" />
+
+	<target name="ods">
+		<copy todir="${deployLocation}/${applicationName}/">
+			<fileset dir="${mainProjectLocation}/WebContent/">
+				<include name="**/desktop.html" />
+				<include name="**/simpleLogin.jsp" />
+			</fileset>
+		</copy>
+
+		<!-- LIB -->
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/lib">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/lib">
+			</fileset>
+		</sync>
+		<!-- CONFIGURAZIONI GENERICHE -->
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/generic-configuration">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/generic-configuration">
+			</fileset>
+		</sync>
+		<!-- VISTE DI VELOCITY -->
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/velocity">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/velocity">
+			</fileset>
+		</sync>
+
+		<!-- JSP -->
+		<copy todir="${deployLocation}/${applicationName}/WEB-INF/jsp">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/jsp">
+			</fileset>
+		</copy>
+		<copy todir="${deployLocation}/${applicationName}/WEB-INF/jsp">
+			<fileset dir="WebContent/WEB-INF/jsp">
+			</fileset>
+		</copy>
+
+		<!-- EPUB -->
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/epub-factory">
+			<fileset dir="WebContent/WEB-INF/epub-factory">
+			</fileset>
+		</sync>
+
+		<!-- configuration -->
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/configuration">
+			<fileset dir="WebContent/WEB-INF/configuration">
+				<exclude name="**/countries/**" />
+			</fileset>
+			<preserveintarget>
+				<include name="**/countries/**" />
+			</preserveintarget>
+		</sync>
+		<copy todir="${deployLocation}/${applicationName}/WEB-INF/configuration">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/configuration">
+				<include name="**/countries/**" />
+			</fileset>
+		</copy>
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/generic-configuration">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/generic-configuration">
+			</fileset>
+		</sync>
+
+		<!-- external css -->
+		<sync todir="${deployLocation}/${applicationName}/css">
+			<fileset dir="${mainProjectLocation}/WebContent/css">
+			</fileset>
+		</sync>
+
+		<!-- external rdf -->
+		<copy todir="${deployLocation}/${applicationName}/rdf">
+			<fileset dir="WebContent/rdf">
+			</fileset>
+		</copy>
+		<copy todir="${deployLocation}/${applicationName}/rdf">
+			<fileset dir="${mainProjectLocation}/WebContent/rdf">
+			</fileset>
+		</copy>
+		<!-- JS -->
+		<sync todir="${deployLocation}/${applicationName}/js">
+			<fileset dir="${mainProjectLocation}/WebContent/js">
+				<exclude name="**/application/**" />
+				<!-- NECESSARIO  COMMENTARE PER PRIMA SINCRONIZZAZIONE -->
+				<exclude name="**/ext-js/**" />
+				<exclude name="**/ext-js-3.4.0/**" />
+				<exclude name="**/ext-js-4.0.7/**" />
+				<exclude name="**/ext-js-4.1.0/**" />
+				<!-- FINE NECESSARIO COMMENTARE -->
+			</fileset>
+			<preserveintarget>
+				<include name="**/application/**" />
+				<include name="**/ext-js/**" />
+				<include name="**/ext-js-3.4.0/**" />
+				<include name="**/ext-js-4.0.7/**" />
+				<include name="**/ext-js-4.1.0/**" />
+			</preserveintarget>
+		</sync>
+		<copy todir="${deployLocation}/${applicationName}/js">
+			<fileset dir="${mainProjectLocation}/WebContent/js" includes="**/*">
+			</fileset>
+		</copy>
+		<copy todir="${deployLocation}/${applicationName}/js">
+			<fileset dir="WebContent/js" includes="**/**">
+			</fileset>
+		</copy>
+
+		<!-- img -->
+		<copy todir="${deployLocation}/${applicationName}/img">
+			<fileset dir="${mainProjectLocation}/WebContent/img">
+			</fileset>
+		</copy>
+		<copy todir="${deployLocation}/${applicationName}/img">
+			<fileset dir="WebContent/img">
+			</fileset>
+		</copy>
+
+		<!-- classes -->
+		<sync todir="${deployLocation}/${applicationName}/WEB-INF/classes">
+			<fileset dir="${mainProjectLocation}/WebContent/WEB-INF/classes">
+			</fileset>
+		</sync>
+		<copy todir="${deployLocation}/${applicationName}/WEB-INF/classes">
+			<fileset dir="WebContent/WEB-INF/classes">
+			</fileset>
+		</copy>
+
+		<!-- WEBAPP conf-->
+		<copy todir="${deployLocation}/${applicationName}/WEB-INF">
+			<fileset dir="deploy/${springFilesLocation}">
+			</fileset>
+		</copy>
+		<!-- LIB TOMCAT-->
+		<copy todir="${tomcatHome}\lib">
+			<fileset dir="${mainProjectLocation}/tomcat_lib">
+			</fileset>
+		</copy>
+		<copy todir="${deployLocation}/${applicationName}/WEB-INF">
+			<fileset dir="${mainProjectLocation}/WEB-INF_addons">
+			</fileset>
+		</copy>
+		<copy todir="${deployLocation}/${applicationName}">
+			<fileset dir="${mainProjectLocation}/ROOT_addons">
+			</fileset>
+		</copy>
+	</target>
+</project>

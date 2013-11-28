@@ -1,0 +1,130 @@
+	<div class="bprLabel"">{id_beforeDot}  n&deg;: {id_afterLastSlash} {biboStatus}</div>
+
+<div>
+
+	<label class="bprLabel">*Titolo e indicazione responsabilit&agrave;</label>
+	<textarea name="/rdf:RDF/bibo:Book/dc:title/text(cdata)" class="title_monografia edit_field checkTitolo" style="background-color:#FFFF88; height:auto; " >{titolo}</textarea>
+	
+	<label class="bprLabel">Titolo proprio</label>
+	<input name="/rdf:RDF/bibo:Book/isbd:P1004/text(cdata)" class="titoloProprio edit_field" value="{isbdTitoloProprio}"/>
+	
+	<label class="bprLabel">Sottotitolo</label>
+	<input name="/rdf:RDF/bibo:Book/isbd:P1006/text()" class="sottotitolo edit_field" value="{isbdSottotitolo}"/>
+	
+	<label class="bprLabel">Indicazione Responsabilit&agrave;</label>
+	<input name="/rdf:RDF/bibo:Book/isbd:P1007/text()" class="indicazione edit_field" value="{isbdIndicazioneResp}"/>
+	
+	<label class="bprLabel">Edizione</label> 
+	<input name="/rdf:RDF/bibo:Book/bibo:edition/text()" class="publisher_edizione edit_field edit_long" value="{biboEdition}"/>
+		
+	<label class="bprLabel">Responsabilit&agrave; edizione</label> 
+	<input  name="/rdf:RDF/bibo:Book/isbd:P1010/text()" class="publisher_resp edit_field edit_long" value="{isbdRespEd}"/>
+	
+	<label class="bprLabel">Pubblicazione</label> 
+	<input name="/rdf:RDF/bibo:Book/dc:publisher/text()" style="background-color:#FFFF88"  class="publisher_monografia edit_field edit_long" value="{editore}"/>
+	
+	<label class="bprLabel">*Luogo pubblicazione</label> 
+	<input name="/rdf:RDF/bibo:Book/isbd:P1016/text()" class="publisher_luogo edit_field edit_long checkLuogo" value="{isbdLuogo}"/>
+	
+	<label class="bprLabel">*Editore</label> 
+	<input  name="/rdf:RDF/bibo:Book/isbd:P1017/text()" class="publisher_editore edit_field edit_long checkEditore" value="{isbdEditore}"/>
+	
+	<label class="bprLabel">*Anno di pubblicazione</label> 
+	<input type="text" id="publisher_anno checkAnno" name="/rdf:RDF/bibo:Book/dcterms:issued/text()" style="width: 70px"
+		value="{dataPubblicazioneSimple}" class="publisher_anno checkAnno edit_field edit_middle" data-regexFilter="[^0-9]" data-maxLength="4"/> 	
+	
+	<label class="bprLabel">*Data discorsiva</label>
+	<input name="/rdf:RDF/bibo:Book/isbd:P1018/text()"  style="width: 70px"  class="checkDiscorsiva edit_field edit_middle" value="{isbdAnno}"/>
+	
+	<label class="bprLabel">*Descrizione fisica</label> 
+	<input name="/rdf:RDF/bibo:Book/dcterms:extent/text()" style=""  class="checkDecrizione edit_field edit_long" value="{dctermsExtent}"/>
+	
+	<label class="bprLabel">Serie</label> 
+	<input name="/rdf:RDF/bibo:Book/isbd:P1026/text()" class="extent_collezione edit_field edit_long" value="{isbdIndicazione}"/>
+		
+	<label class="bprLabel">Numero serie</label> 
+	<input name="/rdf:RDF/bibo:Book/isbd:P1031/text()" style=""  class="edit_field edit_field" value="{isbdNserie}"/>
+	
+	<label class="bprLabel">Note</label>
+	<input name="/rdf:RDF/bibo:Book/skos:note/text(cdata)" class="edit_field verysimplemce" value="{skosNote}"/>	
+		
+	<label class="bprLabel">Note schedatore</label> 
+	<input name="/rdf:RDF/bibo:Book/skos:editorialNote/text(cdata)" class="edit_field verysimplemce"  value="{skosEditorialNote}" />
+	
+	<label class="bprLabel">Sito web dell'editore</label> 
+	<input name="/rdf:RDF/bibo:Book/foaf:homepage/@rdf:resource" class="edit_field edit_long" value="{foafHomePage}"/>
+
+	<label class="bprLabel">Lingua</label> 
+	<span data-function='["simpleSelect","","it","en","fr","de","sp","pt","ru"]'> 
+			<input name="/rdf:RDF/bibo:Book/dc:language/text()"   class="  edit_field edit_middle" value="{lingua}" /> 
+	</span> 		
+	 
+	<label class="bprLabel">Stato del documento</label> 
+	<span class="status" data-function='["simpleSelect","draft:da completare","edited:completato"]'>
+	<input name="/rdf:RDF/bibo:Book/bibo:status/text()" class="edit_field edit_middle" value="{biboStatus}">
+	</span>	
+	
+	<label class="bprLabel">Data disponibilit&#224;</label> 
+	<input name="/rdf:RDF/bibo:Book/dcterms:available/text()" class="available edit_field edit_middle mydatepicker" value="{dctermsAvailable}">
+	
+	<div  style="display: none">
+		
+		<label class="bprLabel">prima indicazione di responsabilit&agrave;</label>
+		<br />
+		<ul class="container-dctermsCreator  if-empty-remove" ><li><input name="/rdf:RDF/bibo:Book/dcterms:creator[*]/@rdf:resource" value="{dctermsCreator}"/></li></ul>
+		<br />
+		
+		<label class="bprLabel">responsabilit&agrave; secondarie</label> 
+		<br />
+		<ul class="container-dctermsContributor  if-empty-remove" ><li><input name="/rdf:RDF/bibo:Book/dcterms:contributor[*]/@rdf:resource" value="{dctermsContributor}"/></li></ul>
+		<br />
+	
+		<label class="bprLabel">destinatario</label> 
+	    <input name="/rdf:RDF/bibo:Book/dcterms:audience/@rdf:resource" class="edit_field edit_middle" value="{destinatario}"/> 
+		
+		<label class="bprLabel">dcterms:provenance</label> 
+		<ul class="container-ente_resource  if-empty-remove" ><li><input name="/rdf:RDF/bibo:Book/dcterms:provenance[*]/@rdf:resource" value="{ente_resource}"/></li></ul>
+		
+		<label class="bprLabel">skos:altLabel</label> 
+	    <input name="/rdf:RDF/bibo:Book/skos:altLabel/text()" class="edit_field edit_middle" value="{skosAltLabel}"/> 
+	
+		<label class="bprLabel">dcterms:accessRights</label> 
+		<span data-function='["simpleSelect","internal:documento NON disponibile per la pubblicazione","external:documento disponibile per la pubblicazione"]'>
+		<input name="/rdf:RDF/bibo:Book/dcterms:accessRights/text()" class="edit_field edit_middle" value="{dctermsAccessRights}">
+		</span>	
+		
+		<label class="bprLabel">source</label> 
+		<ul class="container-dctermsSource if-empty-remove" ><li><input name="/rdf:RDF/bibo:Book/dcterms:source[*]/@rdf:resource" value="{dctermsSource}"/></li></ul>
+		
+		<label class="bprLabel">dc:type</label>
+	    <input name="/rdf:RDF/bibo:Book/dc:type/text()" class="edit_field" value="{type}"/>
+		
+		<label class="bprLabel">dcterms:subject</label> 	 
+		<ul class="container-dctermsSubject  if-empty-remove" ><li><input name="/rdf:RDF/bibo:Book/dcterms:subject[*]/@rdf:resource" value="{dctermsSubject}"/></li></ul>
+
+		<ul class="container-dipartimento">
+			<li><input type="text" value="{dipartimento}" class="edit_field" name="/rdf:RDF/bibo:Book/ods:rif_unitaOrganizzativa[*]/@rdf:resource" /></li>
+		</ul>
+
+		<ul class="container-odsnote">
+			<li><textarea   class="edit_field" name="/rdf:RDF/bibo:Book/ods:note[*]/text(cdata)">{odsnote}</textarea></li>
+		</ul>		
+		
+		<ul class="container-odsnote_dipartimento">
+			<li><input type="text" value="{odsnote_dipartimento}" class="edit_field" name="/rdf:RDF/bibo:Book/ods:note[*]/@rdf:datatype" /></li>
+		</ul>
+		
+		<input type="text" value="{id}" class="edit_field" name="/rdf:RDF/bibo:Book/@rdf:about"> classificazioni
+		
+		<ul class="container-griglia">
+			<li><input type="text" value="{griglia}" class="edit_field" name="/rdf:RDF/bibo:Book/ods:griglia[*]/@rdf:resource" /></li>
+		</ul>
+						<ul class="container-eurovoc">
+			<li><input type="text" value="{eurovoc}" class="edit_field" name="/rdf:RDF/bibo:Book/ods:eurovoc[*]/@rdf:resource"></li>
+		</ul>
+				<ul class="container-dctermsReferences">
+			<li><input type="text" value="{dctermsReferences}" class="edit_field" name="/rdf:RDF/bibo:Book/dcterms:references[*]/@rdf:resource"></li>
+		</ul>
+		 
+	</div>
+</div>

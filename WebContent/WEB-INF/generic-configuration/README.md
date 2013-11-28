@@ -1,0 +1,1 @@
+alfa configuration for generic configuration files

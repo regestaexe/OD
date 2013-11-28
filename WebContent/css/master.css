@@ -1,0 +1,35 @@
+/* =Typography
+-----------------------------------------------------------------------------*/
+body {
+	
+}
+
+.scheda .kube h1 p,.scheda .kube h2 p,.scheda .kube h3 p,.scheda .kube h4 p,.scheda .kube h5 p {
+	margin: 0; padding: 0
+}
+
+.scheda .kube .nav-v ul li a,.scheda .kube .nav-v ul li span {
+	padding: 0;
+}
+
+.scheda .kube .scheda .kube,.scheda .kube div,.scheda .kube span,.scheda .kube object,.scheda .kube iframe,.scheda .kube p,.scheda .kube blockquote,.scheda .kube pre,.scheda .kube a,.scheda .kube abbr,.scheda .kube acronym,.scheda .kube address,.scheda .kube big,.scheda .kube cite,.scheda .kube code,.scheda .kube del,.scheda .kube dfn,.scheda .kube em,.scheda .kube img,.scheda .kube ins,.scheda .kube kbd,.scheda .kube q,.scheda .kube s,.scheda .kube samp,.scheda .kube small,.scheda .kube strike,.scheda .kube strong,.scheda .kube sub,.scheda .kube sup,.scheda .kube tt,.scheda .kube var,.scheda .kube b,.scheda .kube u,.scheda .kube i,.scheda .kube center,.scheda .kube dl,.scheda .kube dt,.scheda .kube dd,.scheda .kube ol,.scheda .kube ul,.scheda .kube li,.scheda .kube fieldset,.scheda .kube form,.scheda .kube label,.scheda .kube legend,.scheda .kube table,.scheda .kube caption,.scheda .kube tbody,.scheda .kube tfoot,.scheda .kube thead,.scheda .kube tr,.scheda .kube th,.scheda .kube td,.scheda .kube article,.scheda .kube aside,.scheda .kube canvas,.scheda .kube details,.scheda .kube embed,.scheda .kube figure,.scheda .kube figcaption,.scheda .kube footer,.scheda .kube header,.scheda .kube hgroup,.scheda .kube menu,.scheda .kube nav,.scheda .kube output,.scheda .kube ruby,.scheda .kube section,.scheda .kube summary,.scheda .kube time,.scheda .kube mark,.scheda .kube audio,.scheda .kube video,.scheda .kube h1,.scheda .kube h2,.scheda .kube h3,.scheda .kube h4,.scheda .kube h5,.scheda .kube h6
+	{
+	background: inherit;
+}
+/* =Links
+-----------------------------------------------------------------------------*/
+
+/* =Layout
+-----------------------------------------------------------------------------*/
+
+/* =Header
+-----------------------------------------------------------------------------*/
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+
+/* =Misc
+-----------------------------------------------------------------------------*/
+
+/* =Footer
+-----------------------------------------------------------------------------*/

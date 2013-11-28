@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<title name="id" separator=" [id] " multiple_path_separator="ç" multiple_node_separator="°" style="" html_container="span">/rdf:RDF/skos:ConceptScheme/@rdf:ID,/rdf:RDF/skos:Concept/@rdf:ID</title>
+	<title name="label" separator=" [label] " multiple_path_separator="ç" multiple_node_separator="°" style="" html_container="span">/rdf:RDF/skos:ConceptScheme/rdfs:label/text(),/rdf:RDF/skos:Concept/rdfs:label/text()</title>
+	<title name="altLabel" separator=" [altLabel] " multiple_path_separator="ç" multiple_node_separator="°" style="" html_container="span">/rdf:RDF/skos:ConceptScheme/skos:altLabel/text(),/rdf:RDF/skos:Concept/skos:altLabel/text()</title>
+</root>

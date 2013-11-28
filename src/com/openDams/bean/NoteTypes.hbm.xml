@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-gen-2012 11.42.26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.NoteTypes" table="note_types">
+        <id name="idNoteType" type="java.lang.Integer">
+            <column name="id_note_type" />
+            <generator class="identity" />
+        </id>
+        <property name="label" type="string">
+            <column name="label" length="45" not-null="true" />
+        </property>
+        <set name="noteses" inverse="true" lazy="true" table="notes" fetch="select">
+            <key>
+                <column name="ref_id_note_type" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Notes" />
+        </set>
+    </class>
+</hibernate-mapping>

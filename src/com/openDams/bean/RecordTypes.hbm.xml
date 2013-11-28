@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-dic-2009 11.35.39 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.RecordTypes" table="record_types">
+        <id name="idRecordType" type="java.lang.Integer">
+            <column name="id_record_type" />
+            <generator class="native" />
+        </id>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <set name="recordses" inverse="true" lazy="true" table="records" fetch="select">
+            <key>
+                <column name="ref_id_record_type" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Records" />
+        </set>
+    </class>
+</hibernate-mapping>

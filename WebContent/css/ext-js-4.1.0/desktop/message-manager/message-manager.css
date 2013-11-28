@@ -1,0 +1,181 @@
+.message-list-item_1 {
+    margin-top: 3px;
+    margin-left: 2px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    background: url(images/message_1.gif) no-repeat 0 2px;
+    border: 1px solid #fff;
+    font-weight: bold;
+    color: #04408C;
+}
+.message-list-item_2 {
+    margin-top: 3px;
+    margin-left: 2px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    background: url(images/message_2.gif) no-repeat 0 2px;
+    border: 1px solid #fff;
+    font-weight: bold;
+    color: #04408C;
+}
+.message-list-item_3 {
+    margin-top: 3px;
+    margin-left: 2px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    background: url(images/message_3.gif) no-repeat 0 2px;
+    border: 1px solid #fff;
+    font-weight: bold;
+    color: #04408C;
+}
+.message-list-item_500 {
+    margin-top: 3px;
+    margin-left: 2px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    background: url(images/send_message.gif) no-repeat 0 2px;
+    border: 1px solid #fff;
+    font-weight: bold;
+    color: #04408C;
+}
+.message-list-item_501 {
+    margin-top: 3px;
+    margin-left: 2px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    background: url(images/interest_messages.gif) no-repeat 0 2px;
+    border: 1px solid #fff;
+    font-weight: bold;
+    color: #04408C;
+}
+.message-list-item_1:hover {
+    background-color: #DFE8F6 !important;
+	border-color: #A3BAE9;
+	border-style: dotted;
+}
+.message-list-item_2:hover {
+    background-color: #DFE8F6 !important;
+	border-color: #A3BAE9;
+	border-style: dotted;
+}
+.message-list-item_3:hover {
+    background-color: #DFE8F6 !important;
+	border-color: #A3BAE9;
+	border-style: dotted;
+}
+.message-list-item_500:hover {
+	background-color: #DFE8F6 !important;
+	border-color: #A3BAE9;
+	border-style: dotted;
+}
+.message-list-item_501:hover {
+	background-color: #DFE8F6 !important;
+	border-color: #A3BAE9;
+	border-style: dotted;
+}
+.message-list-item_selected {
+	background-color: #DFE8F6 !important;
+	border-color: #A3BAE9;
+	border-style: dotted;
+}
+.messageDetails {
+	padding: 5px;
+	height: 100%;
+	width: 100%;
+}
+.bt_readed{
+	width:16px;
+	height:16px;
+    background: url(images/message_open1.gif) no-repeat;
+}
+.bt_not_readed{
+	width:16px;
+	height:16px;
+    background: url(images/message_close1.gif) no-repeat;
+}
+.bt_interest{
+	width:16px;
+	height:16px;
+    background: url(images/interest_messages.gif) no-repeat;
+}
+.bt_delete_message{
+	width:16px;
+	height:16px;
+    background: url(images/delete_message.gif) no-repeat;
+}
+.message_open1 {
+	width:16px;
+	height:16px;
+    background: url(images/message_open1.gif) no-repeat;
+}
+.message_close1 {
+	width:16px;
+	height:16px;
+    background: url(images/message_close1.gif) no-repeat;
+}
+.message_open2 {
+	width:16px;
+	height:16px;
+    background: url(images/message_open2.gif) no-repeat;
+}
+.message_close2 {
+	width:16px;
+	height:16px;
+    background: url(images/message_close2.gif) no-repeat;
+}
+.message_open3 {
+	width:16px;
+	height:16px;
+    background: url(images/message_open3.gif) no-repeat;
+}
+.message_close3 {
+	width:16px;
+	height:16px;
+    background: url(images/message_close3.gif) no-repeat;
+}
+.send_message {
+    background-image: url(images/send_message.gif) !important;
+}
+.send_system_message {
+    background-image: url(images/send_system_message.gif) !important;
+}
+.send_mandatory_message {
+    background-image: url(images/send_mandatory_message.gif) !important;
+}
+.unreaded_message{
+	font-weight: bold;
+}
+.readed_message{
+	font-weight: normal;
+}
+.users_list{
+	font-weight: bold;
+	color: #04408C;
+	font-size: 11px;
+}
+.bold_list_item{
+	font-weight: bold;
+	color: #04408C;
+	font-size: 11px;
+}
+.normal_list_item{
+	font-weight: normal;
+	color: #04408C;
+	font-size: 11px;
+}
+.normal_list_item_indent{
+	font-weight: normal;
+	color: #04408C;
+	font-size: 11px;
+	margin-left:5px;
+}

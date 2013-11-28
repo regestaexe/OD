@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-mag-2010 11.42.28 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Companies" table="companies">
+        <id name="idCompany" type="java.lang.Integer">
+            <column name="id_company" />
+            <generator class="identity" />
+        </id>
+        <property name="acronym" type="string">
+            <column name="acronym" length="45" not-null="true" />
+        </property>
+        <property name="companyName" type="string">
+            <column name="company_name" length="200" not-null="true" />
+        </property>
+        <property name="imageName" type="string">
+            <column name="image_name" length="200" />
+        </property> 
+        <set name="archiveses" inverse="false" lazy="true" table="company_archives" fetch="select">
+            <key>
+                <column name="ref_id_company" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.openDams.bean.Archives">
+                <column name="ref_id_archive" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="departmentses" inverse="true" lazy="true" table="departments" fetch="select">
+            <key>
+                <column name="ref_id_company" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Departments" />
+        </set>
+        <set name="userses" inverse="true" lazy="true" table="users" fetch="select">
+            <key>
+                <column name="ref_id_company" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Users" />
+        </set>
+    </class>
+</hibernate-mapping>

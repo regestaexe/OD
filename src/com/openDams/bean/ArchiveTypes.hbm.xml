@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-gen-2010 12.17.27 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.ArchiveTypes" table="archive_types">
+        <id name="idArchiveType" type="java.lang.Integer">
+            <column name="id_archive_type" />
+            <generator class="identity" />
+        </id>
+        <property name="description" type="string">
+            <column name="description" length="45" not-null="true" />
+        </property>
+        <property name="generic_index_configuration_xml" type="binary">
+            <column name="generic_index_configuration_xml" />
+        </property>
+        <property name="generic_title_configuration_xml" type="binary">
+            <column name="generic_title_configuration_xml" />
+        </property>
+        <set name="archiveses" inverse="true" lazy="true" table="archives" fetch="select">
+            <key>
+                <column name="ref_id_archive_type" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Archives" />
+        </set>
+    </class>
+</hibernate-mapping>

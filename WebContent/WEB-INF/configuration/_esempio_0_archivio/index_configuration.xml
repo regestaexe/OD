@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<element name="id" search_alias="id" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/@rdf:about</element>
+	<element name="title" search_alias="title,contents" lucene_store_type="no" key_style="multi">/rdf:RDF/*/dc:title/text()</element>
+	<element name="description" search_alias="description,contents" lucene_store_type="no" key_style="double">/rdf:RDF/*/bibo:abstract/text()</element>
+	<element name="dipartimento" search_alias="dipartimento" if_empty_default="none" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:provenance/@rdf:resource</element>
+	<element name="legislatura" search_alias="legislatura" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/ods:rif_leg/@rdf:resource</element>
+	<element name="type" search_alias="type" lucene_store_type="no" key_style="one">/rdf:RDF/*/dc:type/text()</element>
+	<element name="autore" search_alias="creator" lucene_store_type="no" key_style="one">/rdf:RDF/*/skos:altLabel/text()</element>
+	<element name="autoreSimpleSearch" search_alias="autoreSimpleSearch,contents" lucene_store_type="yes" key_style="multi">/rdf:RDF/*/skos:altLabel/text()</element>
+	<element name="editore" search_alias="editore,contents" lucene_store_type="no" key_style="one">/rdf:RDF/*/dc:publisher/text()</element>
+	<element name="publisher" search_alias="contents" lucene_store_type="no" key_style="one">/rdf:RDF/*/dc:publisher/text()</element>
+	<element name="visibilita" search_alias="status" lucene_store_type="no" key_style="one">/rdf:RDF/*/dcterms:accessRight/text()</element>
+	<element name="status" search_alias="status" lucene_store_type="no" key_style="one">/rdf:RDF/*/bibo:status/text()</element>
+	<element name="eurovoc" search_alias="eurovoc" lucene_store_type="no" key_style="one" if_empty_default="" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/ods:eurovoc/@rdf:resource</element>
+	<element name="source" search_alias="source" lucene_store_type="no" key_style="one" if_empty_default="" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:source/@rdf:resource</element>
+	<element name="eurovoc" search_alias="eurovoc" lucene_store_type="no" key_style="one" if_empty_default="" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/ods:eurovoc/@rdf:resource</element>
+	<element name="ultimaModifica" search_alias="ultimaModifica" lucene_store_type="no" key_style="one">/rdf:RDF/*/dcterms:modified/text()</element>
+	<element name="data" search_alias="contents" lucene_store_type="no" key_style="multi">/rdf:RDF/*/dcterms:issued/text()</element>
+	<element name="dataOrder" search_alias="date" lucene_store_type="yes" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="normalizeAndCleanDate">/rdf:RDF/*/dcterms:issued/text()</element>
+	<element name="dataSearch" search_alias="dataSearch" lucene_store_type="yes" key_style="one" >/rdf:RDF/*/dcterms:issued/text()</element>
+	<element name="coverage" search_alias="coverage" lucene_store_type="no" key_style="one" if_empty_default="">/rdf:RDF/*/dc:coverage/text()</element>
+	<element name="publishedOn" search_alias="publishedOn" lucene_store_type="no" key_style="one">/rdf:RDF/*/ods:publishedOn/@rdf:resource</element>
+	<element name="utente" search_alias="utente,contents" lucene_store_type="no" key_style="one">/rdf:RDF/*/skos:changeNote/dc:creator/text()</element>
+ 	<element name="griglia" search_alias="griglia,contents" lucene_store_type="no" key_style="one" if_empty_default="" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:subject/@rdf:resource</element>
+	<element name="citazione" search_alias="citazione,contents" lucene_store_type="no" key_style="one" if_empty_default="">/rdf:RDF/*/dcterms:bibliographicCitation/text()</element>
+	<element name="publisher" search_alias="publisher,contents" lucene_store_type="no" key_style="one" if_empty_default="">/rdf:RDF/*/dc:publisher/text()</element>
+	<element name="creator" search_alias="autoreRif,contents" lucene_store_type="no" key_style="one" if_empty_default="" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:creator/@rdf:resource</element>
+	<element name="contributor" search_alias="autoreRif,contents" lucene_store_type="no" key_style="one" if_empty_default="" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/dcterms:contributor/@rdf:resource</element>
+	<element name="note" search_alias="note,contents" lucene_store_type="no" key_style="double">/rdf:RDF/*/skos:note/text()</element>
+	<element name="noteEditoriali" search_alias="noteEditoriali,contents" lucene_store_type="no" key_style="double">/rdf:RDF/*/skos:editorialNote/text()</element>
+	<element name="available" search_alias="available" lucene_store_type="yes" key_style="one" >/rdf:RDF/*/dcterms:available/text()</element>	
+</root>

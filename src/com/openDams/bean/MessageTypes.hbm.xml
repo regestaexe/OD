@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 3-gen-2012 16.33.26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.MessageTypes" table="message_types">
+        <id name="idMessageType" type="java.lang.Integer">
+            <column name="id_message_type" />
+            <generator class="native" />
+        </id>
+        <property name="messageLabel" type="string">
+            <column name="message_label" length="100" not-null="true" />
+        </property>
+        <set name="messageses" inverse="true" lazy="true" table="messages" fetch="select">
+            <key>
+                <column name="ref_id_message_type" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Messages" />
+        </set>
+    </class>
+</hibernate-mapping>

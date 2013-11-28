@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<element name="id_ConceptScheme" search_alias="id" lucene_store_type="no" key_style="double">/rdf:RDF/skos:ConceptScheme/@rdf:ID</element>
+	<element name="id_Concept" search_alias="id" lucene_store_type="no" key_style="double">/rdf:RDF/skos:Concept/@rdf:ID</element>
+	<element name="label_ConceptScheme" search_alias="label,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:ConceptScheme/rdfs:label/text()</element>
+	<element name="label_Concept" search_alias="label,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:Concept/rdfs:label/text()</element>
+	<element name="altLabel_ConceptScheme" search_alias="altLabel,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:ConceptScheme/skos:altLabel/text()</element>
+	<element name="altLabel_Concept" search_alias="altLabel,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:Concept/skos:altLabel/text()</element>
+	<element name="scopeNote_ConceptScheme" search_alias="scopeNote,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:ConceptScheme/skos:scopeNote/text()</element>
+	<element name="scopeNote_Concept" search_alias="scopeNote,contents" lucene_store_type="no" key_style="double">/rdf:RDF/skos:Concept/skos:scopeNote/text()</element>
+</root>

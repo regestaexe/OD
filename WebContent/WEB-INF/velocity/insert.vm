@@ -1,0 +1,41 @@
+<div>
+#set ($mapPath ="/configuration/${idArchive}$!{type}/pathsJson.js")
+#set ($ontologyMapPath ="/configuration/ontology/pathsJson.js")<script type="text/javascript">
+	globalOpt.document.archive=${idArchive};
+	globalOpt.document.jsonMap={};
+	#include(${mapPath}); 
+	var configurazioni = globalOpt.document.jsonMap.configurazioni;
+	#include(${ontologyMapPath}); 
+    globalOpt.document.jsonMap.configurazioni = configurazioni;
+	
+		for(i =0; i<globalOpt.document.jsonMap.configurazioni.imports.length;i++){
+			for(chiave in globalOpt.document.jsonMap.configurazioni.imports[i]){
+				$("#imports_in_inse").append("<input type=\"hidden\"  name=\""+chiave+"\" value=\""+globalOpt.document.jsonMap.configurazioni.imports[i][chiave]+"\">");
+			}
+		}
+	   for(i =0; i<globalOpt.document.jsonMap.configurazioni.fixedvalues.length;i++){
+			for(chiave in globalOpt.document.jsonMap.configurazioni.fixedvalues[i]){
+				$("#imports_in_inse").append("<input type=\"hidden\"  name=\""+globalOpt.document.jsonMap.configurazioni.fixedvaluesprefix+chiave+"\" value=\""+globalOpt.document.jsonMap.configurazioni.fixedvalues[i][chiave]+"\">");
+			}
+		}	
+ 
+ 		$("#imports_in_inse").append("<input type=\"hidden\"  name=\"idArchive\" value=\"${idArchive}\">");
+		$("#imports_in_inse").append("<input type=\"hidden\"  name=\"xml_root\" value=\""+globalOpt.document.jsonMap.configurazioni.root+"\">");
+		$("#imports_in_inse").append("<input type=\"hidden\"  name=\"idRecordType\" value=\""+globalOpt.document.jsonMap.configurazioni.idRecordType+"\">");
+		$("#imports_in_inse").append("<input type=\"hidden\"  name=\"encoding\" value=\""+globalOpt.document.jsonMap.configurazioni.encoding+"\">");
+		$("#imports_in_inse").append("<input type=\"hidden\" name=\"/rdf:RDF/@xmlns\" value=\""+globalOpt.document.jsonMap.configurazioni.xmlns+"\" />");
+		$("#imports_in_inse").append("<input type=\"hidden\" name=\"/rdf:RDF/@xml:base\" value=\""+globalOpt.document.jsonMap.configurazioni["xml:base"]+"\" />");
+		$("#imports_in_inse").append("<input type=\"hidden\" name=\"type\" value=\""+globalOpt.document.jsonMap.configurazioni["type"]+"\" />");
+		$("#imports_in_inse").append("<input type=\"hidden\" name=\"rdfName\" value=\""+globalOpt.document.jsonMap.configurazioni["rdfName"]+"\" />");
+		
+		
+		
+</script>
+<div class="scheda" id="inj_insert">
+<form action="ajax/insertDocumental.html" method="post" name="ajaxInsertForm" id="ajaxInsertForm">
+<div id="imports_in_inse"></div><textarea style="display:none" id="for_ins_mce"></textarea>
+<input type="hidden" name="action" value="doInsert"/>
+#set ($templatePath ="/configuration/${idArchive}$!{type}/insert_template.html")
+#parse($templatePath)
+</form>
+</div></div>

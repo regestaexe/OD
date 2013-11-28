@@ -1,0 +1,91 @@
+<div>
+<form name="editForm" id="editForm" method="post" action="ajax/saveDocumental.html">
+<div class="scheda">	
+
+<input type="hidden" name="action" value="update"/> 
+<div id="imports" style="display:none">
+	
+	<span class="container-gestione_utente"> 
+		<input type="text" value="{gestione_utente}" class="edit_field" name="/skos:changeNote[@rdf:parseType='Resource'][*]/dc:creator/text()" />
+	</span>
+	<span class="container-gestione_azione"> 
+		<input type="text" value="{gestione_azione}" class="edit_field" name="/skos:changeNote[@rdf:parseType='Resource'][*]/rdf:value/text()" />
+	</span>
+	<span class="container-gestione_data"> 
+		<input type="text" value="{gestione_data}" class="edit_field" name="/skos:changeNote[@rdf:parseType='Resource'][*]/dc:date/text()" />
+	</span>	
+	<span class="container-odsPubblicato"> 
+		<input type="text" value="{odsPubblicato}" class="edit_field" name="/rdf:RDF/*/ods:publishedOn[*]/@rdf:resource" />
+	</span>	
+
+	<span class="container-twittedBy"> 
+		<input type="text" value="{twittedBy}" class="edit_field" name="/rdf:RDF/*/ods:twittedBy[*]/@rdf:resource" />
+	</span>	
+</div>
+#set ($mapPath ="/configuration/${idArchive}$!{type}/pathsJson.js")
+#set ($ontologyMapPath ="/configuration/ontology/pathsJson.js")<script type="text/javascript">
+	globalOpt.document.archive=${idArchive};
+	globalOpt.document.jsonMap={};
+	#include(${mapPath}); 
+	var configurazioni = globalOpt.document.jsonMap.configurazioni;
+	#include(${ontologyMapPath}); 
+    globalOpt.document.jsonMap.configurazioni = configurazioni;
+	globalOpt.addImports = function(){
+		for(i =0; i<globalOpt.document.jsonMap.configurazioni.imports.length;i++){
+			for(chiave in globalOpt.document.jsonMap.configurazioni.imports[i]){
+				$("#imports").append("<input type=\"hidden\"  name=\""+chiave+"\" value=\""+globalOpt.document.jsonMap.configurazioni.imports[i][chiave]+"\">");
+			}
+		}
+	 	$("#imports").append("<input type=\"hidden\"  name=\"idArchive\" value=\"${idArchive}\">");
+		$("#imports").append("<input type=\"hidden\"  name=\"xml_root\" value=\""+globalOpt.document.jsonMap.configurazioni.root+"\">");
+		$("#imports").append("<input type=\"hidden\"  name=\"idRecordType\" value=\""+globalOpt.document.jsonMap.configurazioni.idRecordType+"\">");
+		$("#imports").append("<input type=\"hidden\"  name=\"encoding\" value=\""+globalOpt.document.jsonMap.configurazioni.encoding+"\">");
+		$("#imports").append("<input type=\"hidden\" name=\"/rdf:RDF/@xmlns\" value=\""+globalOpt.document.jsonMap.configurazioni.xmlns+"\" />");
+		$("#imports").append("<input type=\"hidden\" name=\"/rdf:RDF/@xml:base\" value=\""+globalOpt.document.jsonMap.configurazioni["xml:base"]+"\" />");
+		$("#imports").append("<input type=\"hidden\" name=\"type\" value=\""+globalOpt.document.jsonMap.configurazioni["type"]+"\" />");
+	    $("#imports").append("<input type=\"hidden\" name=\"idRecord\" value=\""+globalOpt.document.id+"\" />");
+	    
+	    ##/* inizio gestione log utente */
+	    var gestActions = $('.container-gestione_azione','#editForm');
+	    var gestUsers = $('.container-gestione_utente','#editForm');
+	    var gestDates = $('.container-gestione_data','#editForm');
+	    var trovato = false;
+	   	gestUsers.find('input').each(function(pos){
+	   	 	var azioneJ = $(gestActions.find('input').get(pos));
+	   	 	var azione = azioneJ.val();
+	   	 	var dataJ = $(gestDates.find('input').get(pos));
+	   	 	var data = dataJ.val();
+	   	 	var utente = $(this).val();
+	   	 	if(!azione || azione == 'undefined'){
+	   	 	 	gestActions.append("<input type=\"hidden\" name=\"/skos:changeNote[@rdf:parseType='Resource'][*]/rdf:value/text()\" value=\"-\" />")
+	   	 	}    	 	
+	   	 	if(!data || data == 'undefined'){
+	   	 	 	gestDates.append("<input type=\"hidden\" name=\"/skos:changeNote[@rdf:parseType='Resource'][*]/dc:date/text()\" value=\"-\" />")
+	   	 	}
+	   	 	if(utente == top.Application.user.id && data == top.Application.today && (azione == 'modify' || azione=='create')){
+	   	 		trovato = true;
+	   	 	}
+	   	 	$(this).attr("name",(globalOpt.document.jsonMap.configurazioni['changeNotePrefix']?globalOpt.document.jsonMap.configurazioni['changeNotePrefix']:globalOpt.document.jsonMap.configurazioni['fixedvaluesprefix'])+$(this).attr("name"));
+	    });
+	    
+	    gestDates.find('input').each(function(pos){
+	    	$(this).attr("name",(globalOpt.document.jsonMap.configurazioni['changeNotePrefix']?globalOpt.document.jsonMap.configurazioni['changeNotePrefix']:globalOpt.document.jsonMap.configurazioni['fixedvaluesprefix'])+$(this).attr("name"));
+	    });	    
+	    gestActions.find('input').each(function(pos){
+	    	$(this).attr("name",(globalOpt.document.jsonMap.configurazioni['changeNotePrefix']?globalOpt.document.jsonMap.configurazioni['changeNotePrefix']:globalOpt.document.jsonMap.configurazioni['fixedvaluesprefix'])+$(this).attr("name"));
+	    }); 
+	    if(!trovato){
+	    	$("#imports",'#inj_edit').append("<input type=\"hidden\" name=\""+(globalOpt.document.jsonMap.configurazioni['changeNotePrefix']?globalOpt.document.jsonMap.configurazioni['changeNotePrefix']:globalOpt.document.jsonMap.configurazioni['fixedvaluesprefix'])+"/skos:changeNote[@rdf:parseType='Resource'][*]/dc:creator/text()\" value=\""+top.Application.user.id+"\" />");
+	    	$("#imports",'#inj_edit').append("<input type=\"hidden\" name=\""+(globalOpt.document.jsonMap.configurazioni['changeNotePrefix']?globalOpt.document.jsonMap.configurazioni['changeNotePrefix']:globalOpt.document.jsonMap.configurazioni['fixedvaluesprefix'])+"/skos:changeNote[@rdf:parseType='Resource'][*]/dc:date/text()\" value=\""+top.Application.today+"\" />");
+	    	$("#imports",'#inj_edit').append("<input type=\"hidden\" name=\""+(globalOpt.document.jsonMap.configurazioni['changeNotePrefix']?globalOpt.document.jsonMap.configurazioni['changeNotePrefix']:globalOpt.document.jsonMap.configurazioni['fixedvaluesprefix'])+"/skos:changeNote[@rdf:parseType='Resource'][*]/rdf:value/text()\" value=\"modify\" />");
+	    }
+	    ##/* fine gestione log utente */
+	};
+	
+</script> 
+#set ($templatePath ="/configuration/${idArchive}$!{type}/edit_template.html")
+#include($templatePath)
+
+</div>
+</form>
+</div>

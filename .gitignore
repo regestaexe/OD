@@ -4,3 +4,11 @@
 *.jar
 *.war
 *.ear
+
+# eclipse #
+.project
+.settings
+.classpath
+CVS
+.cvsignore
+.externalToolBuilders

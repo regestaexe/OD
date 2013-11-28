@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<element name="contents" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'textfield',
+		             name: 'sf_title+sf_contents',
+		             fieldLabel: 'Testo',
+		             anchor: '95%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+
+
+	<element name="title" archives="2;8;9;15;5" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'textfield',
+		             name: 'sf_title',
+		             fieldLabel: 'Titolo',
+		             anchor: '95%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+
+	<element name="description" archives="2;8;15" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'textfield',
+		             name: 'sf_description',
+		             fieldLabel: 'Descrizione',
+		             anchor: '95%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+
+
+	<element name="note" archives="8" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'textfield',
+		             name: 'sf_note',
+		             fieldLabel: 'Norma padre',
+		             anchor: '95%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+	<element name="numero" archives="4" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'textfield',
+		             name: 'sf_numero',
+		             fieldLabel: 'Identificativo',
+		             anchor: '25%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+
+	<element name="noteDipartimento" archives="2;4;8;9;15" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'textfield',
+		             name: 'sf_noteDipartimento',
+		             fieldLabel: 'Commento',
+		             anchor: '95%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+
+
+	<element name="autore" archives="2;9" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'vocfield',
+		             name: 'sf_autoreSimpleSearch',
+		             fieldLabel: 'Autore',
+		             anchor: '95%',
+		             validator: validateSearchForm
+			        }
+				]]>
+	</element>
+	<element name="rivista" archives="2" type="extjs" pages="all">
+			<![CDATA[
+					{
+					 xtype: 'combo',
+					 name: 'rivista',
+				     fieldLabel: 'Rivista',
+				     anchor: '95%',
+					 editable: false,
+					 triggerAction: 'all',
+					 typeAhead: false,
+					 mode: 'local',
+					 hiddenName: 'sf_rivista',
+					 store: magazinesStore,
+					 displayField: 'rivista',
+			 		 valueField:'rivista',
+					 listeners : {
+							'afterrender' : function() {
+								var myStore = this.getStore();
+								myStore.load({
+									callback : function() {
+										
+									}
+								});
+							}
+					}
+					} 
+				]]>
+	</element>
+	<element name="old_classificazione" archives="13" type="extjs" pages="all">
+		<![CDATA[
+				{
+				 xtype: 'combo',
+				 name: 'type',
+			     fieldLabel: 'Precedente classificazione',
+			     anchor: '95%',
+				 editable: false,
+				 triggerAction: 'all',
+				 typeAhead: false,
+				 mode: 'local',
+				 hiddenName: 'sf_type',
+				 store: archiveStoricStore,
+				 displayField: 'type',
+		 		 valueField:'type',
+				 listeners : {
+						'afterrender' : function() {
+							var myStore = this.getStore();
+							myStore.load({
+								callback : function() {
+									
+								}
+							});
+						}
+				}
+				} 
+			]]>
+	</element>
+	<!--element name="title" archives="all" type="extjs" pages="all"> <![CDATA[ { xtype: 'vocfield', name: 'sf_title', fieldLabel: 'Titolo', anchor: '95%', validator: validateSearchForm } ]]> </element -->
+	<element name="legislatura" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+					 xtype: 'combo',
+					 name: 'legislatura',
+				     fieldLabel: 'Legislatura',
+				     anchor: '95%',
+					 editable: false,
+					 triggerAction: 'all',
+					 typeAhead: false,
+					 mode: 'local',
+					 hiddenName: 'sf_legislatura',
+					 store: getDataLegislatureForSearch(true,4)
+					} 
+				]]>
+	</element>
+	<element name="dipartimento" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+						 xtype: 'combo',
+						 name: 'dipartimento',
+					     fieldLabel: 'Dipartimento',
+					     anchor: '95%',
+						 editable: false,
+						 triggerAction: 'all',
+						 typeAhead: false,
+						 mode: 'local',
+						 hiddenName: 'sf_dipartimento',
+						 store: getDataDipartimentiForSearch(),
+						 listeners:{
+					         'added': function(el){
+					         		el.setValue(top.Application['user'].dipartimento);
+					         }
+					    }				
+					} 
+				]]>
+	</element>
+	<!--element name="governo" archives="2;3;4;5;6" type="extjs" pages="all"> <![CDATA[ { xtype: 'textfield', name: 'sf_governo', fieldLabel: 'Governo', anchor: '95%', validator: validateSearchForm } ]]> </element -->
+	<element name="coverage" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'checkboxgroup',
+		             name: 'sf_coverage',
+		             columns: 2,
+					 fieldLabel: 'Ambito Territoriale',
+					 items:getCheckTipoNorma('sf_coverage')
+			        }
+				]]>
+	</element>
+	<element name="date_set" archives="all" type="extjs" pages="simple_search">
+			<![CDATA[
+				    {
+		             xtype: 'datefield',
+		             name: 'sf_date_start',
+		             fieldLabel: 'Data da',
+		             format:'d/m/Y',
+		             width:90,
+		             style: 'margin:5 0 0 0;',
+					 validator: validateSearchForm
+			        },
+			        {
+		             xtype: 'datefield',
+		             name: 'sf_date_end',
+		             fieldLabel: 'Data a',
+		             format:'d/m/Y',
+		             width:90,
+					 validator: validateSearchForm
+			        }
+				]]>
+	</element>
+	<element name="date_set" archives="all" type="extjs" pages="advanced_search">
+			<![CDATA[				
+			        {
+		             xtype: 'datefield',
+		             name: 'sf_date_start',
+		             fieldLabel: 'Data da',
+		             format:'d/m/Y',
+		             width:90,
+		             style: 'margin:5 0 0 0;',
+					 validator: validateSearchForm
+			        },
+			        {
+		             xtype: 'datefield',
+		             name: 'sf_date_end',
+		             fieldLabel: 'Data a',
+		             format:'d/m/Y',
+		             width:90,
+					 validator: validateSearchForm
+			        }
+				]]>
+	</element>
+	<element name="order" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+		            xtype: 'radiogroup',
+		            fieldLabel: 'Ordina per',
+		            items: [
+		                {boxLabel: 'Rilevanza', name: 'order_by', inputValue: '',sort_type:''},
+		                {boxLabel: 'Data decrescente', name: 'order_by', inputValue: 'DATE',sort_type:'integer',checked: true},
+		                {boxLabel: 'Data crescente', name: 'order_by', inputValue: 'date',sort_type:'integer'}
+		            ]
+			        }
+				]]>
+	</element>
+	<element name="no_skos_rel" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+		             xtype: 'checkboxgroup',
+		             name: 'sf_no_skos_rel',
+		             columns: 2,
+					 fieldLabel: 'Senza associazioni',
+					 items:getTHArchives()
+			        }
+				]]>
+	</element>
+	<element name="file_search" archives="all" type="extjs" pages="all">
+			<![CDATA[
+					{
+		            xtype: 'radiogroup',
+		            fieldLabel: 'Estendi agli allegati',
+		            items: [
+		                {boxLabel: 'Si', name: 'file_search', inputValue: 'yes'},
+		                {boxLabel: 'No', name: 'file_search', inputValue: 'no',checked: true}		                
+		            ]
+			        }
+				]]>
+	</element>
+</root>

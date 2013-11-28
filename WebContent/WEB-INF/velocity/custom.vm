@@ -1,0 +1,13 @@
+<div ><div >
+#set ($mapPath ="/configuration/${idArchive}/pathsJson.js")
+#set ($ontologyMapPath ="/configuration/ontology/pathsJson.js")<script type="text/javascript">
+	globalOpt.document.archive=${idArchive};
+	globalOpt.document.jsonMap={};
+	#include(${mapPath}); 
+	var configurazioni = globalOpt.document.jsonMap.configurazioni;
+	#include(${ontologyMapPath}); 
+    globalOpt.document.jsonMap.configurazioni = configurazioni;
+</script>
+#set ($templatePath ="/jsp/documental/customTemplates/${action}.jsp")
+#include($templatePath)
+</div></div>

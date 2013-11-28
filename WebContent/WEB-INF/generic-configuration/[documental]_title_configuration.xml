@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<title name="id" separator=" [id] " multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/@rdf:about</title>
+	<title name="descrizione" separator=" [description] " multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/dcterms:issued/text(),{&lt;br /&gt;},/rdf:RDF/*/dc:description/text()</title>
+	<title name="autore" separator="[autore]" multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/dc:creator/text()</title>
+	<title name="utente" separator="[user]" multiple_path_separator="ç" multiple_node_separator="£">/rdf:RDF/*/skos:changeNote/dc:creator/text()</title>
+</root>

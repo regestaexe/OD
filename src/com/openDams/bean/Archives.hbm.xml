@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-gen-2010 12.17.27 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.openDams.bean.Archives" table="archives">
+        <id name="idArchive" type="java.lang.Integer">
+            <column name="id_archive" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="archiveTypes" class="com.openDams.bean.ArchiveTypes" fetch="select">
+            <column name="ref_id_archive_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="archiveIdentities" class="com.openDams.bean.ArchiveIdentities" fetch="select">
+            <column name="ref_id_archive_identity" not-null="true" />
+        </many-to-one>
+        <many-to-one name="archiveGroup" class="com.openDams.bean.ArchiveGroup" fetch="select">
+            <column name="ref_id_archive_group" not-null="true" />
+        </many-to-one>
+        <property name="label" type="string">
+            <column name="label" length="200" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="archiveXmlPrefix" type="string" lazy="false">
+            <column name="archive_xml_prefix" length="20" not-null="true" />
+        </property>
+        <property name="use_default_index" type="java.lang.Boolean">
+            <column name="use_default_index"  not-null="true"/>
+        </property>
+        <property name="archiveOrder" type="java.lang.Integer">
+            <column name="archive_order" />
+        </property>
+         <property name="archiveClass" type="string">
+            <column name="archive_class" length="100" />
+        </property>
+        <property name="offline" type="boolean">
+            <column name="offline" not-null="true" />
+        </property>
+        <set name="recordses" inverse="true" cascade="all-delete-orphan" lazy="true" table="records" fetch="select">
+            <key>
+                <column name="ref_id_archive" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.Records" />
+        </set>
+        <one-to-one name="xmlId" class="com.openDams.bean.XmlId" cascade="all"></one-to-one>
+         <set name="companieses" inverse="false" lazy="true" table="company_archives" fetch="select">
+            <key>
+                <column name="ref_id_archive" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.openDams.bean.Companies">
+                <column name="ref_id_company" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="userRoleses" inverse="true" lazy="true" table="user_roles" fetch="select">
+            <key>
+                <column name="ref_id_archive" />
+            </key>
+            <one-to-many class="com.openDams.bean.UserRoles" />
+        </set>
+         <set name="archiveUserRoles" inverse="true" lazy="true" table="archive_user_role" fetch="select">
+            <key>
+                <column name="ref_id_archive" not-null="true" />
+            </key>
+            <one-to-many class="com.openDams.bean.ArchiveUserRole" />
+        </set>
+         <set name="noteses" inverse="true" lazy="true" table="notes" fetch="select">
+            <key>
+                <column name="ref_id_archive" />
+            </key>
+            <one-to-many class="com.openDams.bean.Notes" />
+        </set>
+    </class>
+</hibernate-mapping>

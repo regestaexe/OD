@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<element name="id" search_alias="id" lucene_store_type="no" key_style="one" classUtil="com.openDams.index.analyzers.IndexCleaner" method="cropAfterLastSlash">/rdf:RDF/*/@rdf:about</element>
+	<element name="title" search_alias="title,contents" lucene_store_type="no" key_style="multi">/rdf:RDF/*/dc:title/text()</element>
+	<element name="description" search_alias="description,contents" lucene_store_type="no" key_style="double">/rdf:RDF/*/dc:description/text()</element>	
+	<element name="utente" search_alias="utente" lucene_store_type="no" key_style="one">/rdf:RDF/*/skos:changeNote/dc:creator/text()</element>
+</root>
