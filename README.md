@@ -12,7 +12,3 @@ di test per verificare di persona le funzionalità della versione OS
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/regestaexe/opendams/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/regestaexe/opendams/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
